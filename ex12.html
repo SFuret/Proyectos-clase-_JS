@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento 12</title>
+</head>
+<body>
+    <script>
+  let numeros= []; //Creo un array vacío
+  let valor=0;
+  while(numeros.length<5){
+  if(valor % 2 === 0) //compruebo que el número es par
+  {
+    numeros.push(valor);
+  }
+  valor++; //Incremento el número para probar con el siguiente
+  }
+
+  for(let i=0; i<5;i++){
+  document.write(numeros[i]);
+  }
+    </script>
+    
+</body>
+</html>
