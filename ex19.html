@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento 19</title>
+</head>
+<body>
+    <script>
+        let numero;
+        let valor;
+        let contador=0;
+        do {
+          numero = prompt("Introduzca un numero");
+          valor = parseInt(numero);
+          if (valor >=0) {
+           contador++;
+          }
+          else{
+            alert('Se han introducido ' + contador + ' números');
+          }
+        } while (valor >= 0);
+      </script>
+</body>
+</html>

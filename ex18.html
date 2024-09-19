@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documento 18</title>
+  </head>
+  <body>
+    <script>
+      let numero;
+      let valor;
+      do {
+        numero = prompt("Introduzca un numero");
+        valor = parseInt(numero);
+        if (valor != 0) {
+          /*compruebo que no me entre si el usario introduce 0*/
+          if (valor % 2 === 0) {
+            alert("El número es par");
+          } else if (valor % 2 !== 0) {
+            alert("El número es impar");
+          }
+        }
+      } while (valor !== 0);
+    </script>
+  </body>
+</html>

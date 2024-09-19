@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento 16</title>
+</head>
+<body>
+    <script>
+        
+        let valor;
+        let numero;
+
+        do{
+        valor=prompt('Indique un número')
+        numero=parseInt(valor);  
+        if(numero>=0)
+        {
+         alert('El cuadrado de '+ numero + ' es: ' + (numero*numero)); /*pongo + para concatenar y la operación matemática entre paréntesis
+         después de la concatenación*/
+         /*En este caso muestro el resultado con alert porque el document write es asíncrono, y no me lo muestra
+         en el instante
+         el alert es síncrono, así que va a parar y lo va a hacer*/
+        }  }while(numero>=0)  
+        
+
+    </script>
+</body>
+</html>
