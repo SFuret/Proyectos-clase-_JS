@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento14</title>
+</head>
+<body>
+    <script>
+      let valor=2;  //valor indica el numero de la tabla
+    do {          //Ejecuto la sentencia antes de incrementar la palabra valor
+        document.write('<h3>Tabla del '+ valor +'</h3>');
+        document.write('**********<br>');
+        for (let i = 1; i<=10; i++) {  
+           
+           document.write(valor , 'x', i +'=' , valor*i ,'<br>'); //Multiplico a valor por los numeros del 1 al 10
+           //Utilizo la , para concatenar para no confundir con el signo de suma + y la concatenación con +
+           
+            
+        }   
+        document.write('....')
+        valor++; 
+    }while(valor<=10);
+    </script>
+</body>
+</html>
