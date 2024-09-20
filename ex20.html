@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Documento 20</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        let numero;
-        let valor;
-        
+      let valor;
+      valor = prompt("Introduzca un número");
+      valor = parseInt(valor);
+      let noIgual = true;
+      let nuevoValor;
 
- 
-            numero=prompt('Indique un número');
-            valor=parseInt(numero);
-        
-
+      while (noIgual) {
+        /*Mientras no sea verdadero, o lo que es lo mismo, mientras sea false*/
+        nuevoValor = prompt("Indique un número para ver si acierta");
+        nuevoValor =
+          parseInt(nuevoValor); /*Ahora nuevoValor va a contener un entero*/
+        if (valor === nuevoValor) {
+          noIgual = false;
+          alert("Has acertado!!!");
+        }
+      }
     </script>
-</body>
+  </body>
 </html>
