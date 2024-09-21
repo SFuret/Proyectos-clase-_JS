@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros</title>
+</head>
+<body>
+    <script>
+        let libro=[];
+        libro[0]=['Access para Windows', 'Charles Siegel','Anaya','Informática','84-7614-759-7','450','45.67'];
+        libro[1]=['Salud', 'Eduardo Almasa','Deusto','Medicina','24-3547-590-1','153','23.18'];
+        libro[2]=['Redes de Computadoras', 'Luis Carcel','Parainfo','Informática','47-8829-435-7','215','32.86'];
+
+        let codigo= prompt("Introduzca un código");
+        codigo=parseInt(codigo);
+         
+       
+        let tablaLibro;
+
+      
+        if(codigo>=0 && codigo<3)
+        {
+            /*Uso ` ` para poder poner variables dentro y que se interpreten
+            Uso ${} para mostrar el valor de la variable*/
+            tablaLibro=`<table border="1">
+                <tr><td>Código</td><td >${libro[codigo][0]}</td></tr>
+                <tr><td>Autor</td><td>${libro[codigo][1]}</td></tr>
+                <tr><td>Editorial</td><td>${libro[codigo][2]}</td></tr>
+                <tr><td>Tema</td><td>${libro[codigo][3]}</td></tr>
+                <tr><td>ISBN</td><td>${libro[codigo][4]}</td></tr>
+                <tr><td>Páginas</td><td>${libro[codigo][5]}</td></tr>
+                <tr><td>Precio</td><td>${libro[codigo][6]}</td></tr>
+                </table>`      
+                
+           
+        }
+        else {
+      
+      tablaLibro = "<p>Introduzca un número entre 0 y 2</p>";
+    }
+
+    document.write(tablaLibro);
+
+    </script>
+</body>
+</html>
