@@ -6,6 +6,9 @@
     <title>Libros</title>
 </head>
 <body>
+    <div id="tablaLibro"></div>
+
+
     <script>
         let libro=[];
         libro[0]=['Access para Windows', 'Charles Siegel','Anaya','Informática','84-7614-759-7','450','45.67'];
@@ -19,7 +22,7 @@
         let tablaLibro;
 
       
-        if(codigo>=0 && codigo<3)
+        if(!isNaN(codigo) && codigo >= 0 && codigo < libro.length)
         {
             /*Uso ` ` para poder poner variables dentro y que se interpreten
             Uso ${} para mostrar el valor de la variable*/
@@ -36,12 +39,17 @@
            
         }
         else {
-      
-      tablaLibro = "<p>Introduzca un número entre 0 y 2</p>";
+      // Si el código es inválido, mostramos un mensaje de error
+      /*Aquí uso "" aunque ponga etiqueta html porque es un texto que pongo todo el texto y las etiquetas seguidas
+      en este caso para poner una variable y que se interprete hay que concatenar con + (variable)*/
+
+      tablaLibro = "<p>Código inválido. Introduzca un número entre 0 y " + (libro.length - 1) + ".</p>";
     }
 
-    document.write(tablaLibro);
+    document.getElementById("tablaLibro").innerHTML = tablaLibro;
 
     </script>
+    
+   
 </body>
 </html>
