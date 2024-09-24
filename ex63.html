@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento63</title>
+</head>
+<body>
+    <h3>Factorial</h3>
+    <script>
+        let numero=prompt('Indique un número');
+        numero=parseInt(numero);
+        let factorial=1; /*Inicializo en 1 porque no cambiaría el valor del número si se multiplicara por este*/
+
+        if(!isNaN(numero)) /*Compruebo que sea un número*/
+        {
+            if(numero===0)
+            {
+              alert("<p>El factorial de 0 es 1</p>");
+            }
+            else{
+                
+
+                for(let i=numero; i>1; i--)
+                {
+                  factorial*=i; 
+                }
+                alert("<p>El factorial de" + (numero) + " es " + factorial + "</p>");
+            }
+        }
+        else{
+            alert("<p>El valor introducido no es un número</p>");
+        }
+
+
+    </script>
+</body>
+</html>
