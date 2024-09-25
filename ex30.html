@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento 30</title>
+</head>
+<body>
+    <script>
+        let alumnos=[  /*estoy defiendo un array de objetos, donde cada campo tiene un nombre asignado
+        mediante el cual puedo acceder*/
+       
+        { edad: 16, altura: 1.60 },
+        { edad: 25, altura: 1.88 },
+        { edad: 22, altura: 1.70 },
+        { edad: 19, altura: 1.75 },
+        { edad: 18, altura: 1.80 }
+    ];
+
+    let estatura=0;
+    let alturaMayor=0;
+      
+        document.write("<h4>Edades de los alumnos</h4>")
+        alumnos.forEach(
+            alumno => {document.write(alumno.edad + "<br>");
+estatura+=alumno.altura;
+if(alumno.altura > 1.75)
+{
+    alturaMayor++;
+}
+
+            }
+            
+           
+
+
+
+
+            
+        );
+        
+        document.write(`La altura media es de: ${Math.round(estatura)/5} <br>`);
+        document.write(`Hay  ${alturaMayor} que miden más de 1.75 metros`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento 29</title>
+</head>
+<body>
+
+    <p id="suma"></p>
+    <p id="cantidad"></p>
+    <script>
+        
+        let suma=0;
+        let superioresMil=0;
+        let numero=0;
+        
+        for (let index = 1; index <=10; index++) {
+            numero=prompt('Introduzca un sueldo');
+            numero=parseInt(numero);
+
+            if(!isNaN(numero))
+        {
+            suma+=numero;
+            if (numero>1000) {
+                superioresMil++;
+            }
+        }
+    }
+
+       document.getElementById("suma").innerText="La suma de los sueldos es: "+(suma);
+       document.getElementById("cantidad").innerText="Hay "+(superioresMil)+ " sueldos superiores a 1000 euros";
+            
+        </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento 28</title>
+</head>
+<body>
+
+
+    <script>
+        
+        let mediaPositivo=0;
+        let cantPositivos=0;
+        let mediaNegativo=0;
+        let cantNegativos=0;
+        let cantCeros=0;
+        for (let index = 1; index <=10; index++) {
+            let numero=prompt('Introduzca un número');
+            numero=parseInt(numero);
+
+            if(!isNaN(numero)){
+            if(numero>0)
+        {
+            mediaPositivo+=numero;
+            cantPositivos++;
+            
+        }
+        else if(numero<0)
+        {
+            mediaNegativo+=Math.abs(numero);
+            cantNegativos++;
+        }
+        else
+        {
+            cantCeros++;
+        }
+
+    }
+       
+            
+        }
+
+        mediaNegativo/=cantNegativos;
+        mediaPositivo/=cantPositivos;
+
+document.write("Media de números positivos: "+ Math.round(mediaPositivo) + "<br>");
+document.write("Media de números negativos: -"+ Math.round(mediaNegativo)+ "<br>");
+document.write("Cantidad de ceros introducidos: "+ cantCeros);
+    </script>
+</body>
+</html>

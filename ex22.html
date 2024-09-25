@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento 22</title>
+</head>
+<body>
+    <script>
+        let numero;
+        let suma=0;
+        let contador=0;
+
+        do{
+            numero=prompt('Introduzca un número');
+            numero=parseInt(numero);
+            if(!isNaN(numero) && numero>=0)
+        {
+            suma +=numero;
+            contador++;
+
+        }
+
+        }while(numero>=0);
+
+        let resultado= suma/contador; 
+        resultado= parseFloat(resultado.toFixed(2));
+
+        alert(" <p>La media de los números introducidos es: "+( resultado) +" </p>")
+    </script>
+   
+</body>
+</html>
