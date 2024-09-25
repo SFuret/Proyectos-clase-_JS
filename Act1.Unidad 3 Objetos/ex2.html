@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Días de la semana</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+
+    <div id="fecha">  </div>
+    <script>
+      let fecha = new Date("12/25/2025 18:45:32");   
+
+
+      let diaSemana = fecha.getDay(); //los días van de 0 a 6 empezando por el domingo
+      let diaMes = fecha.getDate();  //Devuelve día del mes
+      let mes = fecha.getMonth(); // En JS los meses empiezan en 0 pero como voy a buscar el valor en un array q tb empieza por 0 lo dejo así
+      let anyo = fecha.getFullYear();
+      let hora = fecha.getHours();
+      let minutos = fecha.getMinutes();
+      let segundos = fecha.getSeconds();
+
+      let semana=['Domingo','Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+      let diaLetras=semana[diaSemana];
+
+      let meses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+      mes=meses[mes];
+
+      let fechaDevolver=`${diaLetras} , ${diaSemana} de ${mes} del ${anyo} a las ${hora}:${minutos}:${segundos}`;
+       
+      document.getElementById("fecha").innerText=fechaDevolver;
+     
+    </script>
+  </body>
 </html>
