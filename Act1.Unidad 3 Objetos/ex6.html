@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reloj</title>
+  </head>
+  <div id="reloj"></div>
+  <body>
+    
+    <button onclick="pararReloj()">Parar</button>
+    <button onclick="reiniciarReloj()">Iniciar</button>
+
+    <script>
+        let temporizador;
+        let parar = false;
+
+        // Iniciar el reloj y actualizar cada segundo
+        function iniciarReloj() {
+            temporizador = setInterval(() => {  //uso setInterval() para que se ejecute cada segundo la funcion IniciarReloj() 
+                if (!parar) {
+                    let horaActual = new Date();
+                    let hora = horaActual.getHours();
+                    let minutos = horaActual.getMinutes();
+                    let segundos = horaActual.getSeconds();
+
+                   
+                    document.getElementById("reloj").innerText = `${hora}:${minutos}:${segundos}`;
+                }
+            }, 1000); // Tiempo en milisegundos cada el cual se actualiza el temporizador, se ejecuta la función
+        }
+
+        // Detener el reloj
+        function pararReloj() {
+            clearInterval(temporizador);
+            parar = true; // Detener la actualización del reloj
+        }
+
+        // Iniciar el reloj al cargar la página
+        window.onload = iniciarReloj;
+
+
+         // Reiniciar el reloj
+         function reiniciarReloj() {
+            
+            parar = false; // Detener la actualización del reloj
+            iniciarReloj();
+        }
+
+    </script>
+  </body>
+</html>

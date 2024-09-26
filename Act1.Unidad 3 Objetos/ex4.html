@@ -6,32 +6,47 @@
     <title>Sumar fechas</title>
   </head>
   <body>
+    <h3>Resta 5 años, 11 meses y 18 días a la fecha actual</h3>
     <div id="fecha"></div>
+
     <script>
       let fecha = new Date(); //    fecha actual
       let diaMes = fecha.getDate(); //Devuelve día del mes
-      let mes = fecha.getMonth() -12; // sumo 1 más porque los meses van de 0 a 11
-      let anyo = fecha.getFullYear() -5;
-/*
-      if(mes >12)
-      {
-        mes-=12;
-      }
-*/
+      let mes = fecha.getMonth()-11; // sumo 1 más porque los meses van de 0 a 11
+      let anyo = fecha.getFullYear()-5;
 
+
+/*Calcula el día restándole 18 */
 if(diaMes>18)
 {
 diaMes -=18;
 }
-      if (diaMes < 10) {
-        diaMes = "0" + diaMes;
-      }
+else if(diaMes)
+{
+  diaMes= Math.abs(diaMes-18);
+  diaMes=18-diaMes;
+}
 
-      if (mes < 10) {
-        mes = "0" + mes;
-      }
 
+/*Calcula el mes restándole 12 */
+if(mes>18)
+{
+diaMes -=18;
+}
+else if(diaMes)
+{
+  diaMes= Math.abs(diaMes-18);
+  diaMes=18-diaMes;
+}
+
+
+/*Pone 0 delante cuando es de una cifra el día o el mes*/
+      if (mes < 0) {
+        anyo--;
+        mes=12-Math.abs(mes);
+      }
      
+      
       document.getElementById("fecha").innerText = `${diaMes}/${mes}/${anyo}`;
     </script>
   </body>

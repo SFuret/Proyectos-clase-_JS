@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pago por horas</title>
+  </head>
+  <body>
+    <h3 id="pago"></h3>
+
+    <script>
+      let horasTrabajadas = 10;
+      let fecha = new Date("09/26/2024");
+      let pago = 0;
+
+      let diaSemana = fecha.getDay(); //devuelve de 0 a 6 empezando por domingo
+
+      if (diaSemana === 6 || diaSemana === 0) {
+        //es fin de semana
+        pago = horasTrabajadas * 20;
+      } else {
+        pago = horasTrabajadas * 15;
+      }
+
+      document.getElementById(
+        "pago"
+      ).innerText = `Pago correspondiente al trabajador es: ${pago}`;
+    </script>
+  </body>
+</html>
