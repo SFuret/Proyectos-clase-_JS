@@ -13,12 +13,13 @@
 
     <script>
         let temporizador;
-        let parar = false;
+       
 
         // Iniciar el reloj y actualizar cada segundo
-        function iniciarReloj() {
+        function iniciarReloj() { 
+          //voy a hacer una función anónima sin parámetros
             temporizador = setInterval(() => {  //uso setInterval() para que se ejecute cada segundo la funcion IniciarReloj() 
-                if (!parar) {
+             
                     let horaActual = new Date();
                     let hora = horaActual.getHours();
                     let minutos = horaActual.getMinutes();
@@ -26,24 +27,22 @@
 
                    
                     document.getElementById("reloj").innerText = `${hora}:${minutos}:${segundos}`;
-                }
-            }, 1000); // Tiempo en milisegundos cada el cual se actualiza el temporizador, se ejecuta la función
+            
+            }, 1000); // Tiempo en milisegundos cada el cual se actualiza el temporizador, se ejecuta la función cada vez que transcurra ese tiempo
         }
 
         // Detener el reloj
         function pararReloj() {
-            clearInterval(temporizador);
-            parar = true; // Detener la actualización del reloj
+            clearInterval(temporizador); //Detiene un temporizador creado con setInterval(), hace que ya no se vuelva a ejecutar la función definida en el temporizador
         }
 
         // Iniciar el reloj al cargar la página
-        window.onload = iniciarReloj;
+        window.onload = iniciarReloj; //window.onload, hace que se ejecute la función cuando se haya cargado toda la página
 
 
          // Reiniciar el reloj
          function reiniciarReloj() {
-            
-            parar = false; // Detener la actualización del reloj
+                      
             iniciarReloj();
         }
 

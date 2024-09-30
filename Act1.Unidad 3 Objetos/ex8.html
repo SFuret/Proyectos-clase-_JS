@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Datos Alumno</title>
+  </head>
+  <body>
+    <div id="datosAlumno"></div>
+    <script>
+      let alumno = [
+        {
+          codigo: 1,
+          nombre: "Luis",
+          apellidos: "Mas Ros",
+          fecha_nacimiento: "05/10/1990",
+          calificacion: 7.5,
+        },
+      ];
+
+      function calcularEdad(codigoAlumno) {
+        let fechaActual = new Date();
+
+        //Creo una funcion anónima para buscar la posición
+        let posicion = (codigoAlumno) => {
+          for (let i = 0; i < alumno.length; i++) {
+            if (alumno[i].codigo === codigoAlumno) {
+              return i; // Devuelve el índice si encuentra el alumno
+            }
+          }
+          return -1;
+        };
+
+        let indice = posicion(codigoAlumno); // Llamar a la función para obtener el índice del alumno
+
+        if (indice === -1) {
+          return "Alumno no encontrado"; // Manejo de error si el alumno no existe
+        }
+
+        let fechaNacimiento = new Date(alumno[indice].fecha_nacimiento); //Debo convertir la cadena
+        //fecha_nacimiento en un objeto de tipo Date() para poder trabajar con ella
+        let edad = fechaActual - fechaNacimiento; //Tiempo en milisegundos
+        edad = edad / (1000 * 60 * 60 * 24); //divido por la cant de milisegundos q tiene 1 día me da
+        // la cantidad de días trancurridos desde su nacimiento
+        edad = edad / 365; //me da la cant de años
+        return edad;
+      }
+
+      function invertirFecha(fechaNac) {
+        let fecha = new Date(fechaNac);
+
+        var dia = fecha.getDate();
+        var mes = fecha.getMonth() + 1;
+        var año = fecha.getFullYear();
+
+        // Formatear la fecha en día/mes/año
+        return (
+          (dia < 10 ? "0" : "") +
+          dia +
+          "/" +
+          (mes < 10 ? "0" : "") +
+          mes +
+          "/" +
+          año
+        );
+      }
+
+      document.getElementById("datosAlumno").innerHTML = `
+         <table border="1">
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Calificación</th>
+            <th>Edad</th>
+        </tr>
+        <tr><td>${alumno[0].codigo}</td>
+            <td>${alumno[0].nombre}</td>
+            <td>${alumno[0].apellidos}</td>
+            <td>${invertirFecha(alumno[0].fecha_nacimiento)}</td>
+            <td>${alumno[0].calificacion}</td>
+            <td>${calcularEdad(1).toFixed(2)}</td>
+        </tr>
+    </table>`;
+    </script>
+  </body>
+</html>
