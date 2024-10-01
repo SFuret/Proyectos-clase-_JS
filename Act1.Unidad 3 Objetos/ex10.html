@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trabajo con array</title>
+  </head>
+  <body>
+    <div id="mostrar"></div>
+
+    <script>
+      let trabajadores = [
+        {
+          nombre: "Pedro",
+          apellidos: "Pérez López",
+          sueldo: 1500,
+          fechaAlta: new Date("2020-01-15"),
+        },
+        {
+          nombre: "María",
+          apellidos: "López Fernández",
+          sueldo: 2200,
+          fechaAlta: new Date("2019-06-10"),
+        },
+        {
+          nombre: "Carlos",
+          apellidos: "Martínez Ruiz",
+          sueldo: 2800,
+          fechaAlta: new Date("2021-03-22"),
+        },
+        {
+          nombre: "Ana",
+          apellidos: "Gómez Sánchez",
+          sueldo: 3000,
+          fechaAlta: new Date("2018-11-05"),
+        },
+      ];
+ 
+//Función que calcula la retención que se le aplica a un trabajador 
+      function calcularRetencion(trabajador) {
+        let retencion = 0;
+        if (trabajador.fechaAlta.getFullYear() < "1980") {
+          retencion = 20;
+        } else if (
+          trabajador.fechaAlta.getFullYear() >= "1980" &&
+          trabajador.fechaAlta.getFullYear() <= "2000"
+        ) {
+          retencion = 15;
+        } else if (trabajador.fechaAlta.getFullYear() >= "2000") {
+          retencion = 5;
+        }
+
+        retencion = (trabajador.sueldo * retencion) / 100;
+        return retencion;
+      }
+
+      let mostrar = `<table border="1">
+   <!--tr#id*4>td*4-->
+    <tr>
+        <td>Nombre</td>
+        <td>${trabajadores[0].nombre}</td>
+        <td >${trabajadores[1].nombre}</td>
+        <td>${trabajadores[2].nombre}</td>
+        <td>${trabajadores[3].nombre}</td>
+    </tr>
+    <tr>
+        <td>Apellidos</td>
+        <td>${trabajadores[0].apellidos}</td>
+        <td>${trabajadores[1].apellidos}</td>
+        <td>${trabajadores[2].apellidos}</td>
+        <td>${trabajadores[3].apellidos}</td>
+    </tr>
+    <tr>
+        <td>Salario Bruto</td>
+        <td>${trabajadores[0].sueldo}</td>
+        <td>${trabajadores[1].sueldo}</td>
+        <td>${trabajadores[2].sueldo}</td>
+        <td>${trabajadores[3].sueldo}</td>
+    </tr>
+     <tr>
+        <td>Retención</td>
+        <td>${calcularRetencion(trabajadores[0])}</td>  
+        <td>${calcularRetencion(trabajadores[1])}</td>
+        <td>${calcularRetencion(trabajadores[2])}</td>
+        <td>${calcularRetencion(trabajadores[3])}</td>
+    </tr>   
+
+</table>`;
+
+      document.getElementById("mostrar").innerHTML = mostrar; //se muestra dentro del div
+    </script>
+  </body>
+</html>

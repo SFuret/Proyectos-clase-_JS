@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular raiz cuadrada</title>
+</head>
+<body>
+    <p id="numero"></p>
+    <p id="cuadrado"></p>
+    <p id="raizCuadrada"></p>
+    <script>
+        let valor=prompt('Introduzca un número');  //Permite introducir valor por teclado        
+        valor=parseInt(valor);
+        let cuadrado= Math.pow(valor,2); //calcula el cuadrado de un número
+        cuadrado=Math.round(cuadrado);
+        let raizCuadrada=Math.sqrt(valor); //calcula la raiz cuadrada
+        raizCuadrada=Math.round(raizCuadrada);
+        document.getElementById("numero").innerText=`El número es: ${valor}`;  
+        document.getElementById("cuadrado").innerText=`El cuadrado es: ${cuadrado}`;           
+        document.getElementById("raizCuadrada").innerText=`La raiz cuadrada es: ${raizCuadrada}`;   
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertir valores</title>
+</head>
+<body>
+    <p id="mostrar"></p>
+    <script>
+        let valor=prompt('Introduzca un número');  //Permite introducir valor por teclado
+        let entero=parseInt(valor);
+        let decimal=parseFloat(valor);
+        if(isNaN(entero)||isNaN(decimal))
+        {
+            document.getElementById("mostrar").innerText="Es NaN";
+        }
+        else{
+            document.getElementById("mostrar").innerText=decimal;
+        }
+        
+
+    </script>
+</body>
+</html>

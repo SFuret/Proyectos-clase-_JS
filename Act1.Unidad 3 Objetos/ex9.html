@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrega Documento</title>
+  </head>
+  <p id="plazo"></p>
+  <body>
+    <script>
+      let fechaEntrega = new Date("09/28/2024 23:59:59"); //fecha de entrega
+      let fechaActual = new Date();
+
+      let fechaEntregaMilisegundos = fechaEntrega.getTime(); //tiempo en milisegundo
+      let fechaActualMilisegundos = fechaActual.getTime();
+
+      if (fechaActualMilisegundos > fechaEntregaMilisegundos) {
+        document.getElementById("plazo").innerText = "Fuera de plazo";
+      } else {
+        document.getElementById("plazo").innerText = "Dentro de plazo entrega";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla</title>
+</head>
+<body>
+    <div id="mostrar"></div>
+
+<script>
+let trabajadores = [
+  {
+    nombre: "Pedro",
+    apellidos: "Pérez López",
+    sueldo: 1500,
+    fechaAlta: new Date('2020-01-15')
+  },
+  {
+    nombre: "María",
+    apellidos: "López Fernández",
+    sueldo: 2200,
+    fechaAlta: new Date('2019-06-10')
+  },
+  {
+    nombre: "Carlos",
+    apellidos: "Martínez Ruiz",
+    sueldo: 2800,
+    fechaAlta: new Date('2021-03-22')
+  },
+  {
+    nombre: "Ana",
+    apellidos: "Gómez Sánchez",
+    sueldo: 3000,
+    fechaAlta: new Date('2018-11-05')
+  }
+];
+
+/* Los trabajadores incorporados antes de 1980 tienen una retención del 20%, 
+los trabajadores con fecha entre 1980 y 2000 una retención del 15%, 
+y los trabajadores con fecha posterior al 2000 tienen una retención del 5%. */
+
+function calcularRetencion(trabajador) {
+  let retencion = 0;  
+  const anioAlta = trabajador.fechaAlta.getFullYear();
+  
+  if (anioAlta < 1980) {
+    retencion = 20;
+  } else if (anioAlta >= 1980 && anioAlta <= 2000) {
+    retencion = 15;
+  } else if (anioAlta > 2000) {
+    retencion = 5;
+  }
+  
+  return (trabajador.sueldo * retencion) / 100;
+}
+
+// Construimos la tabla de trabajadores con retención calculada
+let mostrar = `<table border="1">
+  <tr>
+    <th>Nombre</th>
+    <th>Apellidos</th>
+    <th>Salario Bruto</th>
+    <th>Fecha de alta</th>
+    <th>Retención</th>
+  </tr>`;
+
+trabajadores.forEach(trabajador => {
+  const retencion = calcularRetencion(trabajador);  // Calcula la retención para cada trabajador
+  mostrar += `<tr>
+    <td>${trabajador.nombre}</td>
+    <td>${trabajador.apellidos}</td>
+    <td>${trabajador.sueldo} €</td>
+    <td>${trabajador.fechaAlta.toLocaleDateString('es-ES')}</td>
+    <td>${retencion} €</td>
+  </tr>`;
+});
+
+mostrar += `</table>`;
+
+// Muestra el resultado en el div
+document.getElementById("mostrar").innerHTML = mostrar;
+</script>
+</body>
+</html>
