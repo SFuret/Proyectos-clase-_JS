@@ -8,26 +8,13 @@
   <body>
     <div id="fecha"></div>
     <script>
-      let fecha = new Date(); //    fecha actual
-      let diaMes = fecha.getDate() + 5; //Devuelve día del mes
-      let mes = fecha.getMonth() + 5; // sumo 1 más porque los meses van de 0 a 11
-      let anyo = fecha.getFullYear() + 10;
-
-      if(mes >12)
-      {
-        mes-=12;
-      }
-
-      if (diaMes < 10) {
-        diaMes = "0" + diaMes;
-      }
-
-      if (mes < 10) {
-        mes = "0" + mes;
-      }
-
-     
-      document.getElementById("fecha").innerText = `${diaMes}/${mes}/${anyo}`;
+      let fecha = new Date();
+      fecha.setDate(fecha.getDate() + 5); //Modifico el día
+      fecha.setMonth(fecha.getMonth() + 5); //Modifico el mes
+      fecha.setFullYear(fecha.getFullYear() + 10); //Modifico el año
+      document.write(
+        `día: ${fecha.getDate()}  mes: ${fecha.getMonth()}  año: ${fecha.getFullYear()}`
+      );
     </script>
   </body>
 </html>

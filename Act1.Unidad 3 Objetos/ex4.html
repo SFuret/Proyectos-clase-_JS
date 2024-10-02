@@ -11,43 +11,11 @@
 
     <script>
       let fecha = new Date(); //    fecha actual
-      let diaMes = fecha.getDate(); //Devuelve día del mes
-      let mes = fecha.getMonth()-11; 
-      let anyo = fecha.getFullYear()-5;
-
-
-/*Calcula el día restándole 18 */
-if(diaMes>18)
-{
-diaMes -=18;
-}
-else if(diaMes)
-{
-  diaMes= Math.abs(diaMes-18);
-  diaMes=18-diaMes;
-}
-
-
-/*Calcula el mes restándole 12 */
-if(mes>18)
-{
-diaMes -=18;
-}
-else if(diaMes)
-{
-  diaMes= Math.abs(diaMes-18);
-  diaMes=18-diaMes;
-}
-
-
-/*Pone 0 delante cuando es de una cifra el día o el mes*/
-      if (mes < 0) {
-        anyo--;
-        mes=12-Math.abs(mes);
-      }
+     fecha.setDate(fecha.getDate()-18); //Modifico el día
+    fecha.setMonth(fecha.getMonth()-11);  //Modifico el mes
+    fecha.setFullYear(fecha.getFullYear()-5); //Modifico el año
+      document.write(`día: ${fecha.getDate()}  mes: ${fecha.getMonth()}  año: ${fecha.getFullYear()}`);
      
-      
-      document.getElementById("fecha").innerText = `${diaMes}/${mes}/${anyo}`;
     </script>
   </body>
 </html>
