@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dominó</title>
+  </head>
+  <body>
+    <div id="dominoCompleto"></div>
+    <div id="piezaExtraida"></div>
+    <script>
+      let domino = [];
+     
+      // LLENAR EL ARRAY CON TODAS LAS PIEZAS DEL DOMINÓ
+      for (let index = 0; index <= 6; index++) {
+        for (let j = 0; j <= 6; j++) {
+          domino.push([index, j]);
+        }
+      }
+
+      //BUSCAR UNA FICHA ALEATORIA ENTRE 0 Y 6
+      let i = Math.floor(Math.random() * 7); //Multiplico por 7 para que incluya al 6
+      //uso Math.floor() para asegurarme de obtener un número entero.
+      let j = Math.floor(Math.random() * 7); //si quiero que lo haga de 1 a 6 sin incluir el 0 pondría  let i=Math.floor(Math.random() * 6)+1;
+      let fichaExtraer = [i, j];
+
+
+
+      // FUNCION PARA COMPARAR DOS ARRAYS(DOS PIEZAS)
+      function arraysIguales(arr1, arr2) {
+        if (arr1.length !== arr2.length) {
+          //compruebo que tengan el mismo tamaño
+          return false;
+        }
+        for (let i = 0; i < arr1.length; i++) {
+          if (arr1[i] !== arr2[i]) {
+            //compruebo el contenido
+            return false;
+          }
+        }
+        return true;
+      }
+
+
+
+
+      //FUNCION PARA EXTRAER UNA PIEZA
+      function extraerPieza (fichaExtraer){
+        let pos = -1; // Posición que no existe
+
+       //buscar ficha
+        for (let i = 0; i < domino.length; i++) {
+          if (arraysIguales(domino[i], fichaExtraer)) {
+            pos = i; 
+            break;
+          }
+        }
+
+        // Si la ficha fue encontrada
+        if (pos !== -1) {
+          return domino.splice(pos, 1)[0]; // Eliminar y devolver la ficha
+        } else {
+          return null;
+        }
+      };
+
+
+
+      //MOSTRAR DOMINÓ COMPLETO
+      domino.forEach((elemento) => {
+        document.getElementById("dominoCompleto").innerHTML += `<p>[${elemento}]</p>`;
+      });
+
+
+
+      //MOSTRAR PIEZA EXTRAIDA
+
+      let pieza=extraerPieza(fichaExtraer);
+      document.getElementById("piezaExtraida").innerHTML = `<p>Ficha extraída: [${pieza}]</p>`;
+    </script>
+  </body>
+</html>
