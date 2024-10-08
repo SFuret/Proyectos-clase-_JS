@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadrado de colores</title>
+</head>
+<body>
+    <div id="principal"></div>
+     
+  
+    <script>
+
+        /*Crear un div con los metodos del DOM*/
+        let div = document.createElement("div");
+        div.setAttribute("id", "zonadibujo"); //le pongo el atributo id "zonadibujo"
+        principal.appendChild(div); //lo fija en el DOM dentro del div contenedor
+
+     /*Hago una tabla de forma dinámica*/   
+let cuadrado= `<table border="3px solid black collapse">`;
+  for (let index = 0; index < 30; index++) {
+    
+    cuadrado+=`<tr style="height: 10px; width: 10px;border-color: white;" >`;
+         for (let j = 0; j < 30; j++) {
+            cuadrado+=`<td style="height: 10px; width: 10px;background-color: RGB(${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)});"> </td>`;
+            //uso Math.floor() para que el numero aleatorio me lo redondee al entero más bajo
+         }
+      
+         cuadrado+=`</tr>`;   
+  }
+  cuadrado+=`</table>`; 
+
+  /*acceso con el metodo getElementById() del DOM al div donde se va a mostrar el cuadrado*/
+  document.getElementById("zonadibujo").innerHTML=cuadrado;
+
+    </script>
+    
+</body>
+</html>
