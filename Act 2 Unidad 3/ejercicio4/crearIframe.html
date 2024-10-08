@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajo con iframe</title>
+</head>
+<body>
+
+    <iframe id="videos" src="" frameborder="0" width="500px" height="500px"></iframe>
+    <script>
+
+let arrayVideos = [];
+        arrayVideos[0] = "https://www.youtube.com/embed/Smp-u-8ynbE?autoplay=1";
+        arrayVideos[1] = "https://www.youtube.com/embed/w-S9vdaz82k?autoplay=1";
+        arrayVideos[2] = "https://www.youtube.com/embed/X-bPSOCFM5U?autoplay=1";
+        arrayVideos[3] = "https://www.youtube.com/embed/4Azc4Gs2nlU?autoplay=1";
+        arrayVideos[4] = "https://www.youtube.com/embed/CRiXsvxms8k?autoplay=1";
+        arrayVideos[5] = "https://www.youtube.com/embed/EvKm8yhM7V8?autoplay=1";
+        arrayVideos[6] = "https://www.youtube.com/embed/6tfgKv93C_Q?autoplay=1";
+        arrayVideos[7] = "https://www.youtube.com/embed/q5NWTXmR8iU?autoplay=1";
+        arrayVideos[8] = "https://www.youtube.com/embed/5TzL6XzWYLc?autoplay=1";
+        arrayVideos[9] = "https://www.youtube.com/embed/5TzL6XzWYLc?autoplay=1";
+
+
+
+let posicionAleatoria = Math.floor(Math.random() * 10); //escojo una posicion aleatoria de 0 a 9
+
+document.getElementById("videos").src=arrayVideos[posicionAleatoria]; //llamo al video en la posicion aleatoria escogida
+
+    </script>
+</body>
+</html>
