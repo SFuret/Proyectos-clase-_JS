@@ -1,0 +1,96 @@
+
+<script>
+    function ventana()
+    {
+        let nueva_ventana=window.open('','',"width=600, height=400,resizable=no");
+        nueva_ventana.focus();
+        nueva_ventana.document.write("<h3>Ejemplo de Ventana Nueva</h3>");
+        nueva_ventana.document.write(`<p>URL Completa: ${nueva_ventana.location.href}</p>`); //devuelve la URL
+        nueva_ventana.document.write(`<p>Protocolo utilizado: ${nueva_ventana.location.protocol}</p>`); 
+        nueva_ventana.document.write(`<p>Nombre en código del navegador: ${nueva_ventana.navigator.appCodeName}</p>`);  
+        
+        if(navigator.javaEnabled)
+    {
+        nueva_ventana.document.write(`<p>Java SI disponible en esta ventana</p>`);
+    }
+    else{
+        nueva_ventana.document.write(`<p>Java NO disponible en esta ventana</p>`);    
+    }
+
+    
+    nueva_ventana.document.write(`<iframe src="https://www.google.es/"  width="800" height="600" frameborder="0"></iframe>`);
+   /* `<div id="cerrarVentana"></div>`
+    nueva_ventana.document.getElementById("cerrarVentana").innerHTML=`<button onclick="cerrarVentana()">Cerrar Ventana</button>`;*/
+   }
+
+
+    function calcularEdad(diaNacimiento, mesNacimiento, anyoNacimiento)
+    {
+      let fechaNacimiento=new Date(anyoNacimiento,mesNacimiento,diaNacimiento);
+      let fechaActual=new Date();
+      fechaNacimiento=fechaNacimiento.getTime();//convierte a milisegundos la fecha
+      fechaActual=fechaActual.getTime();
+      let edad=fechaActual-fechaNacimiento;
+      edad=edad/(1000 * 60 * 60 * 24); //divido por la cant de milisegundos q tiene 1 día me da
+      // la cantidad de días trancurridos desde su nacimiento
+      edad = edad / 365; //me da la cant de años
+      return edad;
+       
+    }
+
+  /* 
+
+o El coseno de 180 es: XXXXXXXXXX  
+o El número mayor de (34,67,23,75,35,19) es: XX  
+o Ejemplo de número al azar: XXXXXXXXXX  
+Donde aparecen las XXXX tendrá que aparecer el cálculo o texto que corresponda.*/
+</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajo con ventanas</title>
+</head>
+<body>    
+    <button onclick="ventana()">Ventana Nueva</button>
+  
+    
+    <script>
+       document.write(`<h1>TAREA DWEC03</h1><hr/>  `);
+       let nombreCompleto=prompt("introduzca su nombre y apellidos");
+       let diaNac=prompt("introduzca DIA de nacimiento");
+       diaNac=parseInt(diaNac);
+       let mesNac=prompt("introduzca MES de nacimiento");
+       mesNac=parseInt(mesNac);
+       let anyoNac=prompt("introduzca AÑO de nacimiento");
+       anyoNac=parseInt(anyoNac);
+       document.write(`<p>Buenos días ${nombreCompleto}</p>`);
+       let cantCaracteres= nombreCompleto.length; 
+       document.write(`<p>Tu nombre tiene ${cantCaracteres} caracteres, incluidos espacios</p>`);
+       let primeraA=nombreCompleto.indexOf('a');
+       document.write(`<p>La primera letra A de tu nombre está en la posición: ${primeraA} </p>`);
+       let ultimaA=nombreCompleto.lastIndexOf('a');
+       document.write(`<p>La última letra A de tu nombre está en la posición: ${ultimaA} </p>`);
+       let nombreMenos3= nombreCompleto.slice(3);
+       document.write(`<p>Tu nombre menos las 3 primeras letras es: ${nombreMenos3} </p>`);
+       let nombreMayuscula= nombreCompleto.toUpperCase();
+       document.write(`<p>Tu nombre todo en mayúsculas es: ${nombreMayuscula} </p>`);
+       let edad= calcularEdad(diaNac,mesNac,anyoNac);
+       document.write(`<p>Tu edad es: ${edad} </p>`);
+       document.write(`<p>Naciste en: ${anyoNac} </p>`);
+
+       /*Calcular coseno*/
+       let coseno= Math.cos(180);
+       document.write(`<p>El coseno de 180 es:  ${coseno} </p>`);
+       /*Mayor número*/
+       let mayor=Math.max(34,67,23,75,35,19);
+       document.write(`<p>El número mayor de (34,67,23,75,35,19) es:  ${mayor} </p>`);
+
+        /*Número al azar*/
+        let nuevoNumero=Math.random();
+       document.write(`<p>Ejemplo de número al azar:  ${nuevoNumero} </p>`);
+
+    </script>
+</body>
+</html>
