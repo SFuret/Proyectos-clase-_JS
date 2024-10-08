@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Datos Ciudadano</title>
+    <script>
+        function calcularEdad(fechaNacimiento) {
+            let fnac = new Date(fechaNacimiento);
+            fnac = fnac.getTime(); // tiempo en milisegundos
+            let factual = new Date();
+            factual = factual.getTime();
+            let diferenciaAños = factual - fnac;
+            diferenciaAños = diferenciaAños / (1000 * 60 * 60 * 24); // div / la cantidad de milisegundos de 1 día
+            diferenciaAños /= 365; // divido por la cantidad de días de 1 año
+            return Math.floor(diferenciaAños); // Devolver solo la parte entera de los años
+        }
+
+        function extraerCalle(dir) {  
+            let pos = dir.indexOf("nº"); // devuelve posición de nº
+            let calle = dir.substring(0, pos).trim(); // Me devuelve Calle y el nombre
+            return calle;
+        }
+
+        function extraerPiso(dir) {  
+            let pos1 = dir.indexOf("nº"); // devuelve posición de nº
+            let pos2 = dir.indexOf("Pta");
+            let piso = dir.substring(pos1 + 2, pos2).trim(); // Me devuelve el piso
+            return piso;  
+        }
+
+        function extraerPuerta(dir) {
+            let pos1 = dir.indexOf("Pta"); // devuelve posición de Pta
+            let puerta = dir.substring(pos1 + 3).trim(); // Devolvemos todo después de "Pta"
+            return puerta;
+        }
+
+        function extraerPoblacion(poblacion) {
+            let poblac = poblacion.split("-"); // devuelve un array de 2 elementos
+            return poblac;
+        }
+
+        function extraerIdiomas(idiomas) {
+            let arrayIdiomas = idiomas.split(" "); // separa los elementos por espacios
+            return arrayIdiomas;
+        }
+
+        function calcularCantHijos(hijos) {
+            let arrayhijos = hijos.split("-");
+            return arrayhijos.length; // Devuelve la cantidad de hijos
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="mostrarDatos"> Mostrar Datos Ciudadano </div>
+
+    <script>   
+        let nombre = prompt("Nombre: ");
+        let apellidos = prompt("Apellidos: ");
+        let fechaNac = prompt("Fecha de Nacimiento: MM/DD/AAAA");
+        let dirección = prompt("Dirección con el formato Calle XXXXXXXX nº XX Pta XXX");
+        let poblacion = prompt("Población con el formato CODIGO POSTAL - POBLACION");
+        let idiomas = prompt("Idiomas que habla separados por un espacio");
+        let hijos = prompt("Nombres de los hijos separados por -");
+
+        let tablaCiudadano = `
+        <table border="1">
+            <tr>
+                <th colspan="2">Datos del Ciudadano</th>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>${apellidos}, ${nombre.toUpperCase()}</td>
+            </tr>
+            <tr>
+                <th>Edad</th>
+                <td>${calcularEdad(fechaNac)} años</td>
+            </tr>
+            <tr>
+                <th>Calle</th>
+                <td>${extraerCalle(dirección)}</td>
+            </tr>
+            <tr>
+                <th>Piso</th>
+                <td>${extraerPiso(dirección)}</td>
+            </tr>
+            <tr>
+                <th>Puerta</th>
+                <td>${extraerPuerta(dirección)}</td>
+            </tr>
+            <tr>
+                <th>Código Postal</th>
+                <td>${extraerPoblacion(poblacion)[0]}</td>
+            </tr>
+            <tr>
+                <th>Población</th>
+                <td>${(extraerPoblacion(poblacion)[1]).toUpperCase()}</td>
+            </tr>
+            <tr>
+              `;
+
+        // Uso de extraerIdiomas para obtener el array de idiomas
+        let idiomasarreglo = extraerIdiomas(idiomas);   
+        let pos=true;    
+        idiomasarreglo.forEach(idioma => {  
+            if(pos)
+            {
+                tablaCiudadano += `<tr><th>Idiomas</th><td>${idioma.toLowerCase()}</td></tr>`;
+                pos=false;        
+            }
+            else{
+                tablaCiudadano += `<tr><td></td><td>${idioma.toLowerCase()}</td></tr>`;
+            }          
+           
+        });
+
+        tablaCiudadano += `
+            <tr>
+                <th>Num. Hijos</th>
+                <td>${calcularCantHijos(hijos)}</td>
+            </tr>
+        </table>`;      
+
+        document.getElementById("mostrarDatos").innerHTML = tablaCiudadano;
+    </script>
+</body>
+</html>

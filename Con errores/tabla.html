@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <script>
+function calcularEdad(fechaNacimiento)
+{
+  let fnac= new Date(fechaNacimiento);
+  fnac= fnac.getTime(); //tiempo en milisegundos
+  let factual=new Date();
+  factual=factual.getTime();
+  let diferenciaAños=factual-fnac;
+  diferenciaAños=diferenciaAños/(1000*60*60*24);// div / la cantidad de milisegundos de 1 día
+  diferenciaAños/=365;  // divido por la cant de días de 1 año
+  return diferenciaAños;
+}
+
+function extraerCalle(dir)
+{  
+    let pos = dir.indexOf(" nº"); //devuelve posición de nº
+    let calle = dir.substring(0, pos).trim(); //Me devuelve Calle y el nombre , con trim() quito los espacios en blanco delante y detrás
+    return calle;
+}
+
+function extraerPiso(dir)
+{  
+    let pos1 = dir.indexOf("nº"); //devuelve posición de nº
+    let pos2=  dir.indexOf("Pta");
+    let piso = dir.substring(pos1+2, pos2).trim(); //Me devuelve el piso , con trim() quito los espacios en blanco delante y detrás
+    return piso;  
+}
+
+function extraerPuerta(dir)
+{
+  
+    let pos1 = dir.indexOf("Pta"); //devuelve posición de nº
+    let pos2=  dir.lengh-1; //resto 1 porque los string comienzan en 0 las posiciones
+    let puerta = dir.substring(pos1+3, pos2).trim(); //pongo +3 para q no me incluya Pta
+    return puerta;
+
+}
+
+function extraerPoblacion(poblacion)
+{
+let poblac= poblacion.split("-", 2); //devuelve un array de 2 elementos
+return poblac;
+}
+
+function extraerIdiomas(idiomas)
+{
+let arrayIdiomas= idiomas.split(" "); //va a separar los elementos por espacios encontrados, no le indico cuantos elementos
+//tendrá el array
+return arrayIdiomas;
+}
+
+
+function calcularCantHijos(hijos)
+{
+let arrayhijos=hijos.split("-");
+let cantHijos=arrayhijos.length;
+return cantHijos;
+}
+
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Datos Ciudadano</title>
+  </head>
+
+
+  <body>
+  
+<div id="mostrarDatos"> Mostrar Datos Ciudadano </div>
+
+
+    <script>   
+
+      
+      let nombre = prompt("Nombre: ");
+      let apellidos = prompt("Apellidos: ");
+      let fechaNac = prompt("Fecha de Nacimiento: MM/DD/AAAA");
+      let dirección = prompt(
+        "Dirección con el formato Calle XXXXXXXX nº XX Pta XXX"
+      );
+      let poblacion = prompt("Población con el formato CODIGO POSTAL - POBLACION");
+      let idiomas = prompt("Idiomas que habla seprados por un espacio");
+      let hijos = prompt("Nombre de los hijos separados por -");
+
+      tablaCiudadano = ` <table border="1">
+      <tr>
+        <th colspan="2">Datos del Ciudadano</th>
+        
+      </tr>
+      <tr>
+        <th>Nombre</th>
+        <td>${nombre}</td>
+      </tr>
+      <tr>
+        <th>Edad</th>
+        <td>${calcularEdad(fechaNac)}</td>
+      </tr>
+      <tr>
+        <th>Calle</th>
+        <td>${extraerCalle(dirección)}</td>
+      </tr>
+      <tr>
+        <th>Patio</th>
+        <td>${extraerPiso(dirección)}</td>
+      </tr>
+      <tr>
+        <th>Puerta</th>
+        <td>${extraerPuerta(dirección)}</td>
+      </tr>
+      <tr>
+        <th>Código Postal</th>
+        <td>${extraerPoblacion(poblacion)[0]}</td>
+      </tr>
+      <tr>
+        <th>Población</th>
+        <td>${extraerPoblacion(poblacion)[1]}</td>
+      </tr>
+      <tr>
+        <th>Idiomas</th>`;
+        
+        /*Creo esta parte dinamica porque cada ciudadano tendrá una cant de idiomas diferente*/
+        extraerIdiomas().forEach(idioma => {
+            tablaCiudadano += `<tr><td></td><td>${idioma}</td></tr>`;
+        });
+        
+        tablaCiudadano +=`
+        <tr>
+        <th>Num. Hijos</th>
+        <td>${calcularCantHijos(hijos)}</td>
+      </tr>
+        </tr>
+    </table>`;      
+
+    document.getElementById("mostrarDatos").innerHTML=tablaCiudadano;
+    </script>
+  </body>
+</html>

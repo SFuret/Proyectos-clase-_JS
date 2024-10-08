@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Definición del array de datos numéricos
+        const numeros = [-3, 5, 7, -2, 0, 10, -8, 4];
+
+        // Filtra los números positivos y calcula sus cuadrados
+        const cuadradosPositivos = numeros
+            .filter(num => num > 0)   // Filtrar solo los números positivos
+            .map(num => num ** 2);    // Calcular el cuadrado de cada número positivo
+
+        // Imprimir el resultado
+        console.log(cuadradosPositivos);
+    </script>
+</body>
+
+</html>

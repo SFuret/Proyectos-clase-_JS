@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sumar(num1, num2){
+            let resulta = num1 + num2;  
+            alert("El resultado de la suma es " + resulta);
+        }
+        function restar(num1, num2){
+            let resulta = num1 - num2;  
+            alert("El resultado de la resta es " + resulta);
+        }
+        function multiplicar(num1, num2){
+            let resulta = num1 * num2;  
+            alert("El resultado de la multiplicación es " + resulta);
+        }
+        function dividir(num1, num2){
+            let resulta = num1 / num2;  
+            alert("El resultado de la división es " + resulta);
+        }
+    </script>
+</head>
+<body>
+    <p onclick="sumar(3, 5)">Suma</p>
+    <p onclick="restar(3, 5)">Resta</p>
+    <p onclick="multiplicar(3, 5)">Multiplicación</p>
+    <p onclick="dividir(3, 5)">División</p>
+</body>
+</html>

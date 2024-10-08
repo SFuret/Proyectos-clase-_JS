@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let datos = [3, 4, 5, 6];
+        console.log(datos.join("=>"));
+        datos.unshift(1, 2);
+        datos.push(7, 8);
+        console.log(datos.join("=>"));
+        datos.splice(2, 3);         // Desde la posición 2 elimino 3 elementos
+        console.log(datos.join("=>"));
+        datos.splice(4, 0, 9, 10);  // Desde la posición 4 elimino 0 elementos e inserto 2
+        console.log(datos.join("=>"));
+        datos.reverse();  // invierto el array
+        console.log(datos.join("=>"));
+    </script>
+</body>
+
+</html>

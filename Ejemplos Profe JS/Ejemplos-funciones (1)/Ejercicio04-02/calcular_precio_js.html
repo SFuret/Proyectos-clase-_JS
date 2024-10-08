@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calcularPrecio(nombre="Producto genérico", precio=100, iva=21){
+            if (precio.isNaN || iva.isNaN){
+                alert("Datos incorrectos");
+            }else{
+                let resulta = precio + (precio*iva/100);  
+                alert("El precio de "+nombre+" es " + resulta);
+            }          
+        }
+    </script>
+</head>
+<body>
+    <p onclick="calcularPrecio('Producto 1',200, 21)">Precio 1</p>
+    <p onclick="calcularPrecio('Producto 2',300, 10)">Precio 2</p>
+    <p onclick="calcularPrecio('Producto 3',400, 21)">Precio 3</p>
+    <p onclick="calcularPrecio('Producto 4',500, 10)">Precio 4</p>
+</body>
+</html>

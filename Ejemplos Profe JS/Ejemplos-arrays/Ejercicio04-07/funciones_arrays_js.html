@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sonMultiplos(array, numero = 2){
+            let retorno = (array.length >0);
+            let conta = 0;
+            while (retorno && conta<array.length){
+                retorno = array[conta] % numero === 0
+                conta++;
+            }
+            return retorno
+        }
+    </script>
+</head>
+
+<body>
+    <script>
+        // Ejemplos de uso
+        console.log(sonMultiplos([4, 8, 12]));          // true (usa el valor por defecto de 2)
+        console.log(sonMultiplos([4, 8, 12], 4));       // true (son múltiplos de 4)
+        console.log(sonMultiplos([4, 8, 13], 4));       // false (13 no es múltiplo de 4)
+        console.log(sonMultiplos([3, 9, 27], 3));       // true (son múltiplos de 3)
+        console.log(sonMultiplos([2, 3, 6]));           // false (3 no es múltiplo de 2)
+    </script>
+</body>
+
+</html>

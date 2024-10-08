@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function muestraTabla(numero) {
+            let codigo="<ul>";
+            for (let conta = 1; conta < 11; conta++) {
+                codigo += "<li>"+conta+"X"+numero+"="+conta*numero+"</li>"
+            }
+            codigo += "</ul>"
+            document.write(codigo);
+        }
+    </script>
+</head>
+
+<body>
+    <script>
+        do
+            num = parseInt(prompt("Dime un número (1..10)"));
+        while (isNaN(num) || num < 1 || num > 10);
+        muestraTabla(num);
+    </script>
+</body>
+
+</html>
