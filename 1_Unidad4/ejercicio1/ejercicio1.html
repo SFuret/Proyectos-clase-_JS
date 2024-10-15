@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creación de objetos</title>
+</head>
+<body>
+    <div id="datosMedico"></div>
+    <div id="datosHospital"></div>
+    <script>
+/*Crea un objeto hospital*/
+function Hospital(codigo, nombre, direccion, telef, poblacion, cp)
+{
+    this.codHospital=codigo;
+    this.nombreHospital=nombre;
+    this.direccion=direccion;
+    this.telefono=telef;
+    this.poblacion=poblacion;
+    this.codPostal=cp;
+}
+
+/*Crea un objeto medico*/
+function Medico(codigo, nombre, apellidos, dni, dir, telf, poblacion, cp, fecha_nac, especialidad, sueldo, hospital)
+{
+    this.codMedico=codigo;
+    this.nombre=nombre;
+    this.apellidos=apellidos;
+    this.dni=dni;
+    this.direccion=direccion;
+    this.telefono=telefono;
+    this.poblacion=poblacion;
+    this.codPostal=cp;
+    this.fechaNacimiento=fecha_nac;
+    this.especialidad=especialidad;
+    this.sueldo=sueldo;
+    this.hospital=hospital; //añado el objeto hospital
+
+}
+
+function cambiaSueldo(sueldoNuevo)
+{
+this.sueldo=sueldoNuevo;
+}
+
+function retencionMedico(sueldo, aRetener) //Calcula la retención que se le va a aplicar a un médico
+{
+let retencion= (sueldo*aRetener)/100;
+return retencion;
+}
+
+
+function mostrarDatos(med, hosp)
+{
+document.getElementById("datosMedico").innerHTML=`
+<p>DATOS DEL MÉDICO</p>
+<p>Código: ${med.codMedico}</p>
+<p>Nombre: ${med.nombre}</p>
+<p>Apellidos: ${med.apellidos}</p>
+<p>DNI: ${med.dni}</p>
+<p>Dirección: ${med.direccion}</p>
+<p>Teléfono: ${med.telefono}</p>
+<p>Población: ${med.poblacion}</p>
+<p>Código Postal: ${med.codPostal}</p>
+<p>Fecha de Nacimiento: ${med.fechaNacimiento}</p>
+<p>Especialidad: ${med.especialidad}</p>
+<p>Sueldo: ${med.sueldo}</p>
+<br>
+<p> DATOS DEL HOSPITAL</p>
+<p>Código: ${hosp.codHospital}</p>
+<p>Nombre: ${hosp.nombreHospital}</p>
+<p>Dirección: ${hosp.direccion}</p>
+<p>Teléfono: ${hosp.telefono}</p>
+<p>Población: ${hosp.poblacion}</p>
+<p>Código Postal: ${hosp.codPostal}</p>
+
+`    
+}
+
+
+
+    </script>
+</body>
+</html>

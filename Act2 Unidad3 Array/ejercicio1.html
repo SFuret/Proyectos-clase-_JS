@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+    function abrirVentana()
+    {
+        let nuevaVentana= window.open();//abre una nueva ventana
+        nuevaVentana.focus();
+        document.write(`<h3>Ejemplo de Ventana Nueva</h3> <br>`);
+        document.write("URL Completa: "+ window.location.href+"<br>");
+        document.write("Protocolo utilizado: "+ window.location.protocol+"<br>");
+        document.write("Nombre en código del navegador: "+ navigator.userAgent);
+    }
+    
+
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="Abrir Ventana Nueva" onclick="abrirVentana();"/>
+  <!--Que detecte si está JAVA disponible en esa ventana del navegador y si es así que
+escriba:
+▪ Java SI disponible en esta ventana, o bien.
+▪ Java NO disponible en esta ventana.
+o Que abra un iframe con el contenido de www.google.esy de 800x600.-->
+</body>
+</html>
