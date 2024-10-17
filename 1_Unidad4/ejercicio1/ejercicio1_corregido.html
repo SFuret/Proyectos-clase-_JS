@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creación de objetos</title>
+    <title>Hospital</title>
 </head>
 <body>
-    
     <div id="mostrarDatos"></div>
-   
+
     <script>
-        
-         const RETENCION=10; 
+        const RETENCION = 10;
+
         /* Crea un objeto hospital */
         function Hospital(codigo, nombre, direccion, telef, poblacion, cp) {
             this.codHospital = codigo;
@@ -43,18 +42,15 @@
         };
 
         function retencionMedico(sueldo, aRetener) { // Calcula la retención que se le va a aplicar a un médico
-            let retencion = (sueldo * aRetener) / 100;
-            return retencion;
+            return (sueldo * aRetener) / 100;
         }
 
-        function aplicarRetencion(sueldo,cantARetener)
-        {
-           let sueldoConRetencion=sueldo-cantARetener;
-           return sueldoConRetencion;
+        function aplicarRetencion(sueldo, cantARetener) {
+            return sueldo - cantARetener;
         }
 
         function mostrarDatosHospital(hosp) {
-            document.getElementById("datosHospital").innerHTML = `
+            document.getElementById("mostrarDatos").innerHTML += `
                 <p>DATOS DEL HOSPITAL</p>
                 <p>Código: ${hosp.codHospital}</p>
                 <p>Nombre: ${hosp.nombreHospital}</p>
@@ -66,8 +62,8 @@
         }
 
         function mostrarDatosMedico(med) {
-            document.getElementById("datosMedico").innerHTML = `
-                <p>DATOS DEL MÉDICO</p>
+            return `
+                <br><p>DATOS DEL MÉDICO</p>
                 <p>Código: ${med.codMedico}</p>
                 <p>Nombre: ${med.nombre}</p>
                 <p>Apellidos: ${med.apellidos}</p>
@@ -88,35 +84,32 @@
 
         medicoTraumatologo.cambiaSueldo(2300.00);
 
-        //mostrar datos del hospital
+        // Mostrar datos del hospital
         mostrarDatosHospital(hospitalRibera);
 
+        // Calcular retención médico Digestivo        
+        let retencionAplicar = retencionMedico(medicoDigestivo.sueldo, RETENCION);
+        let salarioFinal = aplicarRetencion(medicoDigestivo.sueldo, retencionAplicar);
 
-        //calcular retencion médico Digestivo        
-        let retencionAplicar=retencionMedico(medicoDigestivo.sueldo,RETENCION);
-        let salariofinal=aplicarRetencion(medicoDigestivo.sueldo,retencionAplicar);
-          
-        //calcular retencion médico Traumatologo        
-          let retencionAplicarTrau=retencionMedico(medicoDigestivo.sueldo,RETENCION);
-        let salariofinalTrau=aplicarRetencion(medicoDigestivo.sueldo,retencionAplicar);
-        
-        //mostrar datos
+        // Calcular retención médico Traumatologo        
+        let retencionAplicarTrau = retencionMedico(medicoTraumatologo.sueldo, RETENCION);
+        let salarioFinalTrau = aplicarRetencion(medicoTraumatologo.sueldo, retencionAplicarTrau);
 
-        let mostrar= `<div>
-                      ${mostrarDatosMedico(medicoDigestivo)}
-                      <p>Retención: ${retencionAplicar}</p>
-                      <p>Sueldo final: ${salariofinal}</p>
-                      </div>
-                      <div>
-                      ${mostrarDatosMedico(medicoTraumatologo)}
-                      <p>Retención: ${retencionAplicarTrau}</p>
-                      <p>Sueldo final: ${salariofinalTrau}</p>
-                      </div> ` 
+        // Mostrar datos
+        let mostrar = `
+            <div>
+                ${mostrarDatosMedico(medicoDigestivo)}
+                <p>Retención: ${retencionAplicar}</p>
+                <p>Sueldo final: ${salarioFinal}</p>
+            </div>
+            <div>
+                ${mostrarDatosMedico(medicoTraumatologo)}
+                <p>Retención: ${retencionAplicarTrau}</p>
+                <p>Sueldo final: ${salarioFinalTrau}</p>
+            </div>
+        `;
 
-
-    document.getElementById("mostrarDatos").innerHTML = mostrar;
-
-       
+        document.getElementById("mostrarDatos").innerHTML += mostrar;
     </script>
 </body>
 </html>
