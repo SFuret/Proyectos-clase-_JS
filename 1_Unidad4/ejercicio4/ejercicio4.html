@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+</head>
+<body>
+    <script>
+
+        let facturas=[];
+
+            /* Crea un objeto Empresa */
+        function Empresa (nombre, direccion, telefono, nif)
+        {
+         this.nombreEmpresa=empresa;
+         this.direccion=dirección;
+         this.telefono=telefono;
+         this.nif=nif;
+        }
+
+        /* Crea un objeto Cliente */
+        function Cliente(nombre, direccion, telofono, nif)
+        {
+         this.nombreCliente=empresa;
+         this.direccion=direccion;
+         this.telefono=telefono;
+         this.nif=nif;
+        }
+
+            /* Crea un objeto DetalleFactura */
+        function DetalleFactura(descripcion, precio, cantidad)
+        {
+            this.descripcion=descripcion;
+            this.precio=precio;
+            this.cantidad=cantidad;
+        }
+
+           /* Crea un objeto TotalesFactura */
+        function TotalesFactura(baseImponible, importeTotal, tipoIva, formaPago)
+        {
+            this.baseImponible=baseImponible;
+            this.importeTotal=importeTotal;
+            this.tipoIva=tipoIva;
+            this.formaPago=formaPago;
+        }
+
+        /* Crea un objeto Factura */
+       function Factura (codigo, empresa, cliente, detalle, tIva, formaPago){
+        this.empresa=empresa;
+        this.cliente=cliente;
+        this.detallesFactura=detalle;
+        this.totalesFactura=tIva;
+        this.formaPago=formaPago;
+       }
+
+       function calculaTotal(factura)
+       {
+              //calcula el importeTotal
+             let iva=factura.totalesFactura.baseImponible*(factura.totalesFactura.tipoIva/100);
+             let impTotal=factura.totalesFactura.baseImponible+iva;
+
+             //actualiza el valor del importe en el objeto
+             for (let index = 0; index < facturas.length; index++) {
+                if(facturas[index].codigo===factura.codigo)
+                {
+                    facturas[index].importeTotal=impTotal;  
+                }
+                
+             }
+                   
+        
+       }
+
+       
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

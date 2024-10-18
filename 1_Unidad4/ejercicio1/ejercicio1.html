@@ -65,7 +65,8 @@
             `;
         }
 
-        function mostrarDatosMedico(med) {
+        function mostrarDatosMedico(med) { //inserta directamente los elementos en el div, si quiero que devuelva el código 
+            //html debo hacer un return, ver ejercicio1_corregido
             document.getElementById("datosMedico").innerHTML = `
                 <p>DATOS DEL MÉDICO</p>
                 <p>Código: ${med.codMedico}</p>
@@ -102,7 +103,7 @@
         
         //mostrar datos
 
-        let mostrar= `<div>
+        let mostrar= `<div>                                           
                       ${mostrarDatosMedico(medicoDigestivo)}
                       <p>Retención: ${retencionAplicar}</p>
                       <p>Sueldo final: ${salariofinal}</p>
