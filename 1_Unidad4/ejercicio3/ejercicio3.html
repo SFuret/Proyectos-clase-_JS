@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Citas médicas</title>
+    <script>
+      // Los arrays pacientes y consutas son paralelos, los voy a relacionar con el mismo índice
+      let pacientes = [];
+      let consultas = [];
+      //let pacientesLlamadosConsulta=[];
+
+      let darseCita = function () {
+        let nombre = prompt("Introduzca su nombre");
+        let numConsulta = prompt("Indique el número de consulta");
+        numConsulta = parseInt(numConsulta);
+
+        // Agrego los datos a los arrays
+        pacientes.push(nombre);
+        consultas.push(numConsulta);
+      };
+
+      function crearBotonesConsulta() {
+        // Limpio el contenido anterior
+        document.getElementById("consultas").innerHTML = "";
+
+        if (consultas.length !== 0) {
+          // Compruebo que el array tiene elementos
+          for (let index = 0; index < consultas.length; index++) {
+            // Crear un botón por consulta y agregarlo al DOM
+            const boton = document.createElement("button");
+            boton.id = `siguiente${consultas[index]}`;
+            boton.textContent = `Siguiente consulta ${consultas[index]}`;
+            // Agrego un escuchador de eventos al botón
+            boton.addEventListener("click", function () {
+           /*   document.getElementById("pacientesLlamados").innerHTML=`
+             <p>Paciente: ${pacientes[index]} Consulta:${consultas[index]}</p> `;
+            });*/
+            document.getElementById("pacientesLlamados").innerHTML+=siguientePaciente(index)             
+            });
+            document.getElementById("consultas").appendChild(boton);
+          }
+        }
+      }
+
+
+      function siguientePaciente(posicion) {
+       return `<p>Paciente: ${pacientes[posicion]} Consulta:${consultas[posicion]}</p> `;
+      }
+    </script>
+  </head>
+  <body>
+    <button id="citarse">Citarse</button>
+    <div id="consultas"></div>
+    <div id="pacientesLlamados"></div>
+
+    <script>
+      document.getElementById("citarse").onclick = function () {
+        darseCita(); // Referencio a la función
+        crearBotonesConsulta(); // Crear los botones después de dar la cita
+      };
+    </script>
+  </body>
+</html>

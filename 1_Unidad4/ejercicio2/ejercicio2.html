@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trabajo con número enteros</title>
+  </head>
+  <body>
+    <div id="mostrar"></div>
+    <script>
+      let enteros = [];
+      let repetir = false;
+      do {
+        let numero = prompt("Introduzca un número entero");
+        if (!isNaN(numero)) {
+          //comprueba que sea un número o cadena numérica
+          numero = parseInt(numero);
+          enteros.push(numero); //agrego el número al final del array
+        }
+      } while (numero !== 0);
+
+      function mostrarEliminarNumeros() {
+        for (let index = 0; index < enteros.length; index++) {
+          document.write("<p>" + enteros.pop() + "</p>");
+        }
+      }
+      document.getElementById("mostrar").innerHTML = `
+    <p>Longitud inicial del array: ${enteros.length}</p> 
+    <p>ELEMENTOS DEL ARRAY EN ORDEN INVERSO: </p><br> ${mostrarEliminarNumeros()}
+    <p>Longitud final del array: ${enteros.length}</p>     
+    `;
+    </script>
+  </body>
+</html>

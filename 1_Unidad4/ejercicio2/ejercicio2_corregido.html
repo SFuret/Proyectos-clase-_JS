@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajo con array de enteros</title>
+</head>
+<body>
+    <div id="mostrar"></div>
+    <script>
+        let enteros = [];
+        let numero; // Hace que no tenga que reiniciar la pagina para cargar el promp
+        do {
+          numero = prompt("Introduzca un número entero");
+          if (!isNaN(numero) && numero !== null) { // Asegurarse de que no es null por si el usuario cierra el promp antes de ingresar un número
+            numero = parseInt(numero);
+            enteros.push(numero); // Agrego el número al final del array
+          }
+        } while (numero !== 0);
+      
+        function mostrarEliminarNumeros() {
+          let resultado = ""; // Crear una variable para acumular los resultados
+          while (enteros.length > 0) {
+            resultado += "<p>" + enteros.pop() + "</p>"; // Agregar elementos al resultado
+          }
+          return resultado; // Devolver el resultado
+        }
+      
+        document.getElementById("mostrar").innerHTML = `
+          <p>Longitud inicial del array: ${enteros.length + 1}</p> 
+          <p>ELEMENTOS DEL ARRAY EN ORDEN INVERSO: </p>${mostrarEliminarNumeros()}
+          <p>Longitud final del array: ${enteros.length}</p>     
+        `;
+      </script>  
+</body>
+</html>
