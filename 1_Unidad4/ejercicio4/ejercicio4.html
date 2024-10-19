@@ -1,85 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Factura</title>
-</head>
-<body>
+  </head>
+  <body>
+    <div id="mostrar"></div>
     <script>
-
-        let facturas=[];
-
-            /* Crea un objeto Empresa */
-        function Empresa (nombre, direccion, telefono, nif)
-        {
-         this.nombreEmpresa=empresa;
-         this.direccion=dirección;
-         this.telefono=telefono;
-         this.nif=nif;
+      let facturas = [];
+  
+      /* Crea un objeto Empresa */
+      function Empresa(nombre, direccion, telefono, nif) {
+        this.nombreEmpresa = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.nif = nif;
+      }
+  
+      /* Crea un objeto Cliente */
+      function Cliente(nombre, direccion, telefono, nif) {
+        this.nombreCliente = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.nif = nif;
+      }
+  
+      /* Crea un objeto DetalleFactura */
+      function DetalleFactura(descripcion, precio, cantidad) {
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.cantidad = cantidad;
+      }
+  
+      /* Crea un objeto TotalesFactura */
+      function TotalesFactura(baseImponible, importeTotal, tipoIva, formaPago) {
+        this.baseImponible = baseImponible;
+        this.importeTotal = importeTotal;
+        this.tipoIva = tipoIva;
+        this.formaPago = formaPago;
+      }
+  
+      /* Crea un objeto Factura */
+      function Factura(codigo, empresa, cliente, detalle, tIva) {
+        this.codigo = codigo; // Se agrega el código que faltaba
+        this.empresa = empresa;
+        this.cliente = cliente;
+        this.detallesFactura = detalle;
+        this.totalesFactura = tIva;
+      }
+  
+      function calculaTotal(factura) {
+        // Calcula el importeTotal
+        let iva =
+          factura.totalesFactura.baseImponible *
+          (factura.totalesFactura.tipoIva / 100);
+        let impTotal = factura.totalesFactura.baseImponible + iva;
+  
+        // Actualiza el valor del importe en el objeto
+        for (let index = 0; index < facturas.length; index++) {
+          if (facturas[index].codigo === factura.codigo) {
+            facturas[index].totalesFactura.importeTotal = impTotal; // Corregido para actualizar el importe en el objeto TotalesFactura
+          }
         }
-
-        /* Crea un objeto Cliente */
-        function Cliente(nombre, direccion, telofono, nif)
-        {
-         this.nombreCliente=empresa;
-         this.direccion=direccion;
-         this.telefono=telefono;
-         this.nif=nif;
-        }
-
-            /* Crea un objeto DetalleFactura */
-        function DetalleFactura(descripcion, precio, cantidad)
-        {
-            this.descripcion=descripcion;
-            this.precio=precio;
-            this.cantidad=cantidad;
-        }
-
-           /* Crea un objeto TotalesFactura */
-        function TotalesFactura(baseImponible, importeTotal, tipoIva, formaPago)
-        {
-            this.baseImponible=baseImponible;
-            this.importeTotal=importeTotal;
-            this.tipoIva=tipoIva;
-            this.formaPago=formaPago;
-        }
-
-        /* Crea un objeto Factura */
-       function Factura (codigo, empresa, cliente, detalle, tIva, formaPago){
-        this.empresa=empresa;
-        this.cliente=cliente;
-        this.detallesFactura=detalle;
-        this.totalesFactura=tIva;
-        this.formaPago=formaPago;
-       }
-
-       function calculaTotal(factura)
-       {
-              //calcula el importeTotal
-             let iva=factura.totalesFactura.baseImponible*(factura.totalesFactura.tipoIva/100);
-             let impTotal=factura.totalesFactura.baseImponible+iva;
-
-             //actualiza el valor del importe en el objeto
-             for (let index = 0; index < facturas.length; index++) {
-                if(facturas[index].codigo===factura.codigo)
-                {
-                    facturas[index].importeTotal=impTotal;  
-                }
-                
-             }
-                   
         
-       }
+        // Devuelvo todo lo que voy a necesitar mostrar luego de TotalesFactura
+        return `<p>Importe total: ${impTotal}</p><p>Iva aplicado: ${iva}</p><p>Forma de pago: ${factura.totalesFactura.formaPago}</p>`;
+      }
+  
+      function muestraTotal(factura) {
+        for (let index = 0; index < facturas.length; index++) {
+          if (facturas[index].codigo === factura.codigo) {
+            return `
+              <h2>Factura: ${facturas[index].codigo}</h2>
+              ${calculaTotal(facturas[index])}
+            `;
+          }
+        }
+      }
+  
+      function imprimirFactura(factura) {
+        document.getElementById("mostrar").innerHTML = muestraTotal(factura);
+      }
 
-       
 
+      // EJEMPLO PARA PROBAR QUE FUNCIONA
 
+   
+    let empresa1 = new Empresa("Tech Solutions","Calle Falsa 123","123456789","A12345678");
 
+    // Crear cliente
+    let cliente1 = new Cliente("Juan Pérez","Avenida Siempreviva 742", "987654321", "B87654321");
 
+    // Crear detalle de factura
+    let detalle1 = new DetalleFactura("Laptop", 1000, 1);
 
+    // Crear totales de la factura
+    let totales1 = new TotalesFactura(1000, 0, 21, "Tarjeta de crédito");
 
+    // Crear la factura
+    let factura1 = new Factura("F001", empresa1, cliente1, detalle1, totales1);
+
+    // Agregar la factura al array
+    facturas.push(factura1);
+
+    // Imprimir la factura en pantalla
+    imprimirFactura(factura1);
     </script>
-    
-</body>
+  </body>
 </html>
