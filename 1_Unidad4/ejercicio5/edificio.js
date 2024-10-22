@@ -1,4 +1,12 @@
-import { Propietario } from "./propietario.js"; // Importo el script que contiene la clase Propietario
+class Propietario {
+  // Las variables definidas dentro del constructor son variables de instancia
+  constructor(nombre, planta, puerta) {
+    this.nombre = nombre;
+    this.planta = planta;
+    this.puerta = puerta;
+  }
+}
+
 
 class Edificio {
     
@@ -59,3 +67,5 @@ class Edificio {
     return devolverPropietarios; // Muevo el return fuera del bucle
   }
 }
+
+ 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <!--select Tipo de inmuebles-->
+      <label for="tipo_inmueble">Tipo de Inmueble </label>
+      <select id="tipo_inmueble">
+        <option value="">-Seleccione-</option>
+        <option value="piso">Piso</option>
+        <option value="adosado">Adosado</option>
+        <option value="parcela">Parcela</option>
+        <option value="casa">Casa</option>
+        <option value="chalet">Chalet</option>
+        <option value="local">Local</option>
+        <option value="nave">Nave</option>
+      </select>
+
+      <br /><br />
+
+      <!--caja de texto(datalist) provincia-->
+      <label for="provincia">Provincia</label>
+      <input list="provincias" id="provincia" />
+      <datalist id="provincias">
+        <option value="Madrid"></option>
+        <option value="Valencia"></option>
+        <option value="Barcelona"></option>
+        <option value="Murcia"></option>
+      </datalist>
+
+    </form>
+
+    <br /><br />
+
+     <!--select ubicacion-->
+     <label for="ubicacion">Ubicación</label>   
+     <select id="ubicacion">
+        <option value="">-Seleccione-</option>
+        <option value="centro">centro</option>
+        <option value="sur">sur</option>
+        <option value="este">este</option>
+        <option value="oeste">oeste</option>
+        <option value="ronda">ronda</option>
+        <option value="periferia">periferia</option>
+      </select> 
+    
+    <script>
+     
+     /*Ubicación: Desplegable de 4 filas de alto y selección múltiple con los valores: centro,
+sur, este, oeste, ronda, periferia.
+• Precio Máximo: Número entre 0 y 500.000€ con saltos de 10.000 €
+• Metros Mínimos: Número entre 0 y 5.000 metros con saltos de 50 metros*/
+    </script>
+  </body>
+</html>
