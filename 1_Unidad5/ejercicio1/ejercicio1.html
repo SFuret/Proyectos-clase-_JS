@@ -1,59 +1,181 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <form action="">
-      <!--select Tipo de inmuebles-->
-      <label for="tipo_inmueble">Tipo de Inmueble </label>
-      <select id="tipo_inmueble">
-        <option value="">-Seleccione-</option>
-        <option value="piso">Piso</option>
-        <option value="adosado">Adosado</option>
-        <option value="parcela">Parcela</option>
-        <option value="casa">Casa</option>
-        <option value="chalet">Chalet</option>
-        <option value="local">Local</option>
-        <option value="nave">Nave</option>
-      </select>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario ejercicio 1</title>
+</head>
+<body>
+    <h1>Compra de inmuebles</h1>
+    <form action="#" method="post">
+        <!-- select con  Tipos de Inmuebles -->
+        <label for="tipoInmueble">Tipo de Inmueble</label>
+        <select id="tipoInmueble" name="tipoInmueble">
+            <option value="piso">Piso</option>
+            <option value="adosado">Adosado</option>
+            <option value="parcela">Parcela</option>
+            <option value="casa">Casa</option>
+            <option value="chalet">Chalet</option>
+            <option value="local">Local</option>
+            <option value="nave">Nave</option>
+        </select>
+        <br><br>
 
-      <br /><br />
+        <!-- datalist con Provincias, permite introducir valores -->
+        <label for="provincia">Provincia</label>
+        <input type="text" id="provincia" name="provincia" list="provinciasSugeridas" autocomplete="on">
+        <datalist id="provinciasSugeridas">
+            <option value="Madrid">
+            <option value="Valencia">
+            <option value="Barcelona">
+            <option value="Murcia">
+        </datalist>
+        <br><br>
 
-      <!--caja de texto(datalist) provincia-->
-      <label for="provincia">Provincia</label>
-      <input list="provincias" id="provincia" />
-      <datalist id="provincias">
-        <option value="Madrid"></option>
-        <option value="Valencia"></option>
-        <option value="Barcelona"></option>
-        <option value="Murcia"></option>
-      </datalist>
+        <!-- select (desplegable), size="4" 4 filas de alto, multiple que se pueden seleccionar varias opciones-->
+        <label for="ubicacion">Ubicación</label>
+        <select id="ubicacion" name="ubicacion" size="4" multiple>
+            <option value="centro">Centro</option>
+            <option value="sur">Sur</option>
+            <option value="este">Este</option>
+            <option value="oeste">Oeste</option>
+            <option value="ronda">Ronda</option>
+            <option value="periferia">Periferia</option>
+        </select>
+        <br><br>
 
+        <!-- Precio Máximo: Número entre 0 y 500.000€ con saltos de 10.000 € . Uso un input type="number"  -->
+        <label for="precioMaximo">Precio Máximo:</label>
+        <input type="number" id="precioMaximo" name="precioMaximo" min="0" max="500000" step="10000">
+        <br><br>
+
+        <!-- Metros Mínimos: Número entre 0 y 5.000 metros con saltos de 50 metros. Uso un input type="number"-->
+        <label for="metrosMinimos">Metros Mínimos:</label>
+        <input type="number" id="metrosMinimos" name="metrosMinimos" min="0" max="5000" step="50">
+        <br><br>
+
+        <!-- Altura Mínima: Número de 0 a 40. Uso un input type="number" -->
+        <label for="alturaMinima">Altura Mínima:</label>
+        <input type="number" id="alturaMinima" name="alturaMinima" min="0" max="40">
+        <br><br>
+
+        <!--Mínimo de Habitaciones: Número de 1 a 10. Uso un input type="number"-->
+        <label for="habitacionesMinimas">Mínimo de Habitaciones:</label>
+        <input type="number" id="habitacionesMinimas" name="habitacionesMinimas" min="1" max="10">
+        <br><br>
+
+        <!-- Mínimo Baños: Número de 1 a 5.  Uso un input type="number" -->
+        <label for="bannosMinimos">Mínimo de Baños:</label>
+        <input type="number" id="bannosMinimos" name="bannosMinimos" min="1" max="5">
+        <br><br>
+
+        <!--  Características. Casillas de verificación. 
+          1. Uso un fielset para agrupar las distintas casillas dentro del formulario. 
+          2. Utilizo un <input type="checkbox" para cada una, que me permite escoger varias opciones
+          Noota: los checkboxes que representan un grupo de opciones relacionadas deben tener el mismo atributo name. 
+          Esto permite que, cuando se envíe el formulario, todas las opciones seleccionadas se envíen juntas bajo ese 
+          mismo nombre como un array (conjunto de valores).           
+          -->
+        <fieldset>
+            <legend>Características:</legend> <!--pone un enunciado al fielset-->
+            <input type="checkbox" id="calefaccion" name="caracteristica" value="calefaccion">
+            <label for="calefaccion">Calefacción</label><br>
+            <input type="checkbox" id="aireAcondicionado" name="caracteristica" value="aireAcondicionado">
+            <label for="aireAcondicionado">Aire Acondicionado</label><br>
+            <input type="checkbox" id="garaje" name="caracteristica" value="garaje">
+            <label for="garaje">Garaje</label><br>
+            <input type="checkbox" id="trastero" name="caracteristica" value="trastero">
+            <label for="trastero">Trastero</label><br>
+            <input type="checkbox" id="piscina" name="caracteristica" value="piscina">
+            <label for="piscina">Piscina</label><br>
+            <input type="checkbox" id="ascensor" name="caracteristica" value="ascensor">
+            <label for="ascensor">Ascensor</label><br>
+            <input type="checkbox" id="exterior" name="caracteristica" value="exterior">
+            <label for="exterior">Exterior</label><br>
+            <input type="checkbox" id="terraza" name="caracteristica" value="terraza">
+            <label for="terraza">Terraza</label><br>
+            <input type="checkbox" id="amueblado" name="caracteristica" value="amueblado">
+            <label for="amueblado">Amueblado</label>
+        </fieldset>
+        <br>
+
+        <!-- Proximidad a la playa. Deslizante de min a max -->
+        <label for="proximidadPlaya">Proximidad a la Playa</label>
+        <input type="range" id="proximidadPlaya" name="proximidadPlaya" min="0" max="100">
+        <br><br>
+
+        <!-- Estado. Botones de radio remarcados en un cuadro con el texto Estado
+         1. Uso un fielset para agruparlos y que parezcan un apartado independiente dentro del formulario
+         2. <input type="radio" que a diferencia de los checkbox estos solo permiten escoger una opción
+          y los valores excluyentes: Indiferente (marcado por defecto) -- lo hago con value="indiferente" checked
+          los otros valores son Nuevo, Buen estado y Para reformar.   
+          Nota: Los radioButton deben tener el mismo atributo name. Cuando se envía el formulario, 
+          el valor del botón de radio seleccionado es el único que se envía.-->
+        <fieldset>
+            <legend>Estado:</legend>
+            <input type="radio" id="indiferente" name="estado" value="indiferente" checked>
+            <label for="indiferente">Indiferente</label><br>
+            <input type="radio" id="nuevo" name="estado" value="nuevo">
+            <label for="nuevo">Nuevo</label><br>
+            <input type="radio" id="buenEstado" name="estado" value="buenEstado">
+            <label for="buenEstado">Buen estado</label><br>
+            <input type="radio" id="paraReformar" name="estado" value="paraReformar">
+            <label for="paraReformar">Para reformar</label>
+        </fieldset>
+        <br>
+
+        <!-- Nombre: Caja de texto máximo caracteres 35.
+         Uso <input type="text" -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" maxlength="35" required>
+        <br><br>
+
+        <!-- Apellidos: Caja de texto máximo caracteres 75. 
+         Uso <input type="text"-->
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" maxlength="75" required>
+        <br><br>
+
+        <!-- Correo Electrónico: Caja de texto tipo correo.  
+         Uso un <input type="email" -->
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required>
+        <br><br>
+
+        <!-- Fecha Nacimiento: Caja de texto tipo fecha
+         Uso un <input type="date"-->
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+        <br><br>
+
+        <!-- DNI. Caja de texto de tipo contraseña.
+         Uso un input type="password" -->
+        <label for="dni">DNI:</label>
+        <input type="password" id="dni" name="dni">
+        <br><br>
+
+        <!-- Comentario. Área de texto de 6 filas y 60 columnas
+         Uno un textarea -->
+        <label for="comentario">Comentario:</label>
+        <textarea id="comentario" name="comentario" rows="6" cols="60"></textarea>
+        <br><br>
+
+        <!-- Campo oculto con la fecha actual en formato dd/mm/aaaa   
+        Uso input type="hidden" para que sea oculto
+         -->
+        <input type="hidden" name="fechaActual" value="dd/mm/aaaa">
+
+        <!-- Botón de Enviar (para enviar el formulario) con una imagen. 
+         Uso <button type="submit">
+          que contiene un elemento hijo   <img -->
+        <button type="submit">
+            <img src="enviarFormulario.png" alt="Enviar" width="50" height="50">
+        </button>
+
+        <!-- Botón de Restablecer formulario. 
+         Uso  <button type="reset">
+        Reinicia todos los campos del formulario a sus valores iniciales o por defecto -->
+        <button type="reset">Restablecer formulario</button>
     </form>
-
-    <br /><br />
-
-     <!--select ubicacion-->
-     <label for="ubicacion">Ubicación</label>   
-     <select id="ubicacion">
-        <option value="">-Seleccione-</option>
-        <option value="centro">centro</option>
-        <option value="sur">sur</option>
-        <option value="este">este</option>
-        <option value="oeste">oeste</option>
-        <option value="ronda">ronda</option>
-        <option value="periferia">periferia</option>
-      </select> 
-    
-    <script>
-     
-     /*Ubicación: Desplegable de 4 filas de alto y selección múltiple con los valores: centro,
-sur, este, oeste, ronda, periferia.
-• Precio Máximo: Número entre 0 y 500.000€ con saltos de 10.000 €
-• Metros Mínimos: Número entre 0 y 5.000 metros con saltos de 50 metros*/
-    </script>
-  </body>
+</body>
 </html>
