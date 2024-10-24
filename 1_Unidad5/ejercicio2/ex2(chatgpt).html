@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Socio Videoclub</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Alta de Socio</h1>
+    <form id="socioForm">
+        <label>Nombre:</label>
+        <input type="text" id="nombre" required>
+        <span class="error" id="nombreError"></span><br><br>
+
+        <label>Apellidos:</label>
+        <input type="text" id="apellidos" required>
+        <span class="error" id="apellidosError"></span><br><br>
+
+        <label>Dirección:</label>
+        <input type="text" id="direccion" required>
+        <span class="error" id="direccionError"></span><br><br>
+
+        <label>Población:</label>
+        <input type="text" id="poblacion" required>
+        <span class="error" id="poblacionError"></span><br><br>
+
+        <label>Código Postal:</label>
+        <input type="text" id="cp" required>
+        <span class="error" id="cpError"></span><br><br>
+
+        <label>Teléfono:</label>
+        <input type="text" id="telefono" required>
+        <span class="error" id="telefonoError"></span><br><br>
+
+        <label>Móvil:</label>
+        <input type="text" id="movil" required>
+        <span class="error" id="movilError"></span><br><br>
+
+        <label>DNI:</label>
+        <input type="text" id="dni" required>
+        <span class="error" id="dniError"></span><br><br>
+
+        <label>Cuenta Corriente:</label>
+        <input type="text" id="cuentaCorriente" required>
+        <span class="error" id="cuentaError"></span><br><br>
+
+        <label>Cuota Mensual:</label>
+        <input type="number" step="0.01" id="cuota" required>
+        <span class="error" id="cuotaError"></span><br><br>
+
+        <label>Fecha de Nacimiento:</label>
+        <input type="text" id="fechaNacimiento" required>
+        <span class="error" id="fechaError"></span><br><br>
+
+        <label>Número de Hijos:</label>
+        <input type="number" id="numHijos" required>
+        <span class="error" id="hijosError"></span><br><br>
+
+        <label>Correo Electrónico:</label>
+        <input type="email" id="correo" required>
+        <span class="error" id="correoError"></span><br><br>
+
+        <button type="submit">Dar de Alta</button>
+    </form>
+
+    <script>
+        document.getElementById("socioForm").addEventListener("submit", function(event) {
+            // Prevenir el envío del formulario
+            event.preventDefault();
+            
+            // Limpiar mensajes de error
+            let errores = document.getElementsByClassName("error");
+            for (let error of errores) {
+                error.textContent = "";
+            }
+
+            let valid = true;
+
+            // Validación de Nombre (Entre 3 y 30 caracteres)
+            let nombre = document.getElementById("nombre").value;
+            if (nombre.length < 3 || nombre.length > 30) {
+                document.getElementById("nombreError").textContent = "El nombre debe tener entre 3 y 30 caracteres.";
+                valid = false;
+            }
+
+            // Validación de Apellidos (Entre 3 y 60 caracteres)
+            let apellidos = document.getElementById("apellidos").value;
+            if (apellidos.length < 3 || apellidos.length > 60) {
+                document.getElementById("apellidosError").textContent = "Los apellidos deben tener entre 3 y 60 caracteres.";
+                valid = false;
+            }
+
+            // Validación de Dirección (Entre 3 y 50 caracteres)
+            let direccion = document.getElementById("direccion").value;
+            if (direccion.length < 3 || direccion.length > 50) {
+                document.getElementById("direccionError").textContent = "La dirección debe tener entre 3 y 50 caracteres.";
+                valid = false;
+            }
+
+            // Validación de Población (Entre 3 y 30 caracteres)
+            let poblacion = document.getElementById("poblacion").value;
+            if (poblacion.length < 3 || poblacion.length > 30) {
+                document.getElementById("poblacionError").textContent = "La población debe tener entre 3 y 30 caracteres.";
+                valid = false;
+            }
+
+            // Validación de Código Postal (5 dígitos)
+            let cp = document.getElementById("cp").value;
+            if (!/^\d{5}$/.test(cp)) {
+                document.getElementById("cpError").textContent = "El código postal debe ser de 5 dígitos.";
+                valid = false;
+            }
+
+            // Validación de Teléfono (Formato (963) 498-473)
+            let telefono = document.getElementById("telefono").value;
+            if (!/^\(\d{3}\) \d{3}-\d{3}$/.test(telefono)) {
+                document.getElementById("telefonoError").textContent = "El teléfono debe tener el formato (963) 498-473.";
+                valid = false;
+            }
+
+            // Validación de Móvil (Formato 687-458-785, debe empezar por 6)
+            let movil = document.getElementById("movil").value;
+            if (!/^6\d{2}-\d{3}-\d{3}$/.test(movil)) {
+                document.getElementById("movilError").textContent = "El móvil debe tener el formato 687-458-785 y empezar por 6.";
+                valid = false;
+            }
+
+            // Validación de DNI (Formato 24.547.785-T)
+            let dni = document.getElementById("dni").value;
+            if (!/^\d{2}\.\d{3}\.\d{3}-[A-Z]$/.test(dni)) {
+                document.getElementById("dniError").textContent = "El DNI debe tener el formato 24.547.785-T.";
+                valid = false;
+            }
+
+            // Validación de Cuenta Corriente (Formato 0098-5098-76-9876754568)
+            let cuentaCorriente = document.getElementById("cuentaCorriente").value;
+            if (!/^\d{4}-\d{4}-\d{2}-\d{10}$/.test(cuentaCorriente)) {
+                document.getElementById("cuentaError").textContent = "La cuenta corriente debe tener el formato 0098-5098-76-9876754568.";
+                valid = false;
+            }
+
+            // Validación de Cuota Mensual (Decimal positivo)
+            let cuota = document.getElementById("cuota").value;
+            if (cuota <= 0) {
+                document.getElementById("cuotaError").textContent = "La cuota mensual debe ser un número positivo.";
+                valid = false;
+            }
+
+            // Validación de Fecha de Nacimiento (Formato 12/11/1978)
+            let fechaNacimiento = document.getElementById("fechaNacimiento").value;
+            if (!/^\d{2}\/\d{2}\/\d{4}$/.test(fechaNacimiento)) {
+                document.getElementById("fechaError").textContent = "La fecha de nacimiento debe tener el formato DD/MM/AAAA.";
+                valid = false;
+            }
+
+            // Validación de Número de Hijos (Número entero positivo)
+            let numHijos = document.getElementById("numHijos").value;
+            if (numHijos < 0 || !Number.isInteger(parseFloat(numHijos))) {
+                document.getElementById("hijosError").textContent = "El número de hijos debe ser un entero positivo.";
+                valid = false;
+            }
+
+            // Validación de Correo Electrónico
+            let correo = document.getElementById("correo").value;
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+                document.getElementById("correoError").textContent = "Debe ingresar un correo electrónico válido.";
+                valid = false;
+            }
+
+            // Si todos los campos son válidos, puedes enviar el formulario
+            if (valid) {
+                alert("Formulario válido y enviado con éxito.");
+                // Aquí puedes realizar la lógica para enviar los datos al servidor, como un fetch o similar
+                // fetch('/ruta-del-servidor', { method: 'POST', body: new FormData(socioForm) });
+            }
+        });
+    </script>
+</body>
+</html>

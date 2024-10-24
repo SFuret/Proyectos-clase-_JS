@@ -125,7 +125,17 @@
         <br>
 
         <!-- Nombre: Caja de texto máximo caracteres 35.
-         Uso <input type="text" -->
+         Uso <input type="text" 
+        
+        Nota: name en un campo <input> de un formulario HTML define el nombre con el que se enviará el valor de ese campo al servidor.
+        Cuando un formulario se envía (por ejemplo, mediante un método POST o GET), cada valor de entrada se envía como un par 
+        clave-valor, donde la clave es el valor del atributo name y el valor es lo que el usuario ha ingresado en ese campo
+      
+        Nota: name no tiene que coincidir con el atributo id. Son dos atributos independientes
+        id: Se utiliza para identificar el campo dentro del documento HTML, 
+        principalmente para asociarlo con una etiqueta <label>, para estilos CSS, o para referenciarlo con JavaScript. 
+      
+      -->
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" maxlength="35" required>
         <br><br>
@@ -137,9 +147,14 @@
         <br><br>
 
         <!-- Correo Electrónico: Caja de texto tipo correo.  
-         Uso un <input type="email" -->
-        <label for="correo">Correo Electrónico:</label>
-        <input type="email" id="correo" name="correo" required>
+         Uso un <input type="email" 
+
+        Nota: required en un campo <input> de un formulario HTML indica que ese campo es obligatorio.
+        Si un campo marcado con required está vacío, el navegador evitará que se envíe el formulario y 
+        mostrará un mensaje de advertencia, solicitando que el usuario complete ese campo.
+        -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
         <br><br>
 
         <!-- Fecha Nacimiento: Caja de texto tipo fecha
