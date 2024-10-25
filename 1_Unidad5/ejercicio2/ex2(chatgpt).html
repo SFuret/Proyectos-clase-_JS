@@ -69,6 +69,9 @@
     </form>
 
     <script>
+        /*cuando se hace clic en el botón de enviar o se presiona "Enter". La función preventDefault() interrumpe el
+         comportamiento predeterminado del formulario, permitiendo al programador validar
+         los datos o manejar el envío de forma personalizada, por ejemplo, mediante AJAX para evitar recargar la página.*/
         document.getElementById("socioForm").addEventListener("submit", function(event) {
             // Prevenir el envío del formulario
             event.preventDefault();
