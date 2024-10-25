@@ -1,108 +1,171 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dar alta socio</title>
-</head>
-<body>
-    <form action="" method="post">
-<!--Nombre: Entre 3 y 30 caracteres-->
-<label for="nombre" >Nombre</label>
-<input id="nombre" name="nombre" type="text" minlength="3" maxlength="30" required>
-<br><br>
+  </head>
+  <body>
+    <h1>Rellenar datos del socio a dar de alta</h1>
+    <form action="" id="altaSocio" method="post">
+      <!--Nombre: Entre 3 y 30 caracteres-->
+      <label for="nombre">Nombre</label>
+      <input id="nombre" name="nombre" type="text" minlength="3"  maxlength="30"  required />
+      <br /><br/>
 
+      <!--Apellidos: Entre 3 y 60 caracteres-->
+      <label for="apellidos">Apellidos</label>
+      <input
+        type="text"
+        id="apellidos"
+        name="apellidos"
+        minlength="3"
+        maxlength="60"
+        required
+      />
+      <br /><br/>
 
-<!--Apellidos: Entre 3 y 60 caracteres-->
-<label for="apellidos">Apellidos</label>
-<input type="text" id="apellidos" name="apellidos" minlength="3" maxlength="60" required>
-<br><br>
+      <!--Dirección: Entre 3 y 50 caracteres-->
+      <label for="direccion">Dirección</label>
+      <input
+        type="text"
+        id="direccion"
+        name="direccion"
+        minlength="3"
+        maxlength="50"
+        required
+      />
+      <br /><br/>
 
-<!--Dirección: Entre 3 y 50 caracteres-->
-<label for="direccion">Dirección</label>
-<input type="text" id="direccion" name="direccion" minlength="3" maxlength="50" required>
-<br><br>
+      <!--Población: Entre 3 y 30 caracteres-->
+      <label for="poblacion">Población</label>
+      <input
+        type="text"
+        id="poblacion"
+        name="poblacion"
+        minlength="3"
+        maxlength="30"
+        required
+      />
+      <br /><br/>
 
-<!--Población: Entre 3 y 30 caracteres-->
-<label for="poblacion">Población</label>
-<input type="text" id="poblacion" name="poblacion" minlength="3" maxlength="30" required>
-<br><br>
+      <!--Código Postal: 5 digitos-->
+      <label for="codigoPostal">Código Postal</label>
+      <input
+        type="number"
+        id="codigoPostal"
+        name="codigoPostal"
+        minlength="5"
+        maxlength="5"
+        required
+      />
+      <br /><br/>
 
-<!--Código Postal: 5 digitos-->
-<label for="codigoPostal">Código Postal</label>
-<input type="number" id="codigoPostal" name="codigoPostal" minlength="5" maxlength="5" required>
-<br><br>
+      <!--Teléfono: Por Ejemplo (963) 498-473-->
+      <label for="telefono">Teléfono (ej:(963) 498-473)</label>
+      <input type="text" id="telefono" name="telefono">
+      <br /><br />
 
-<!--Teléfono: Por Ejemplo (963) 498-473-->
-<label for="telefono">Teléfono</label>
-<input type="text" id="telefono" name="telefono" <!--value=""-->>
-<br><br>
+      <!--Móvil: Por ejemplo 687-458-785 y debe empezar por 6-->
+      <label for="movil">Móvil (ej:687-458-785 )</label>
+      <input type="text" id="movil" name="movil">
+      <br /><br />
 
-<!--Móvil: Por ejemplo 687-458-785 y debe empezar por 6-->
-<label for="movil">Móvil</label>
-<input type="text" id="movil" name="movil" <!--value=""-->>
-<br><br>
+      <!--DNI: Por ejemplo 24.547.785-T-->
+      <label for="dni">DNI (ej:24.547.785-T)</label>
+      <input type="text" id="dni" name="dni" > <br /><br />
 
-<!--DNI: Por ejemplo 24.547.785-T-->
-<label for="dni">DNI</label>
-<input type="text" id="dni" name="dni" <!--value=""-->>
-<br><br>
+      <!--Num. Cuenta Corriente: Por ejemplo 0098-5098-76-9876754568-->
+      <label for="cuentaCorriente">Número de Cuenta Corriente (ej:0098-5098-76-9876754568)</label>
+      <input type="text" id="cuentaCorriente"  name="cuentaCorriente" > <br /><br />
 
-<!--Num. Cuenta Corriente: Por ejemplo 0098-5098-76-9876754568-->
-<label for="cuentaCorriente">Número de Cuenta Corriente</label>
-<input type="text" id="cuentaCorriente" name="cuentaCorriente" <!--value=""-->>
-<br><br>
-
-<!--Cuota Mensual: Número decimal positivo
+      <!--Cuota Mensual: Número decimal positivo
 Nota: Con min="0" indico que es positivo
 con step="0.01" indico que acepta decimales con dos valores después de la coma
 -->
-<label for="cuotaMensual">Cuota Mensual</label>
-<input type="number" id="cuotaMensual" name="cuotaMensual" min="0" step="0.01">
-<br><br>
+      <label for="cuotaMensual">Cuota Mensual</label>
+      <input type="number"  id="cuotaMensual"  name="cuotaMensual"   min="0"  step="0.01"  />
+        <br /><br/>
 
-<!--Fecha Nacimiento: con formato dd/mm/aaaa
+      <!--Fecha Nacimiento: con formato dd/mm/aaaa
 input type="date" entrega una fecha con este formato
 -->
-<label for="fechaNacimiento">Fecha de Nacimiento</label>
-<input type="date" id="fechaNacimiento" name="fechaNacimiento">
-<br><br>
+      <label for="fechaNacimiento">Fecha de Nacimiento</label>
+      <input type="date" id="fechaNacimiento" name="fechaNacimiento" />
+      <br /><br />
 
-
-<!--Num. Hijos: Número entero positivo
+      <!--Num. Hijos: Número entero positivo
 Nota: min="0" garantiza que sean positivos
 step="1": Garantiza que solo admita enteros, no decimales
 
 -->
-<label for="cantHijos">Número de hijos</label>
-<input type="number" id="cantHijos" name="cantHijos" min="0" step="1">
-<br><br>
+      <label for="cantHijos">Número de hijos</label>
+      <input type="number" id="cantHijos" name="cantHijos" min="0" step="1" />
+      <br /><br />
 
-<!--Dirección de correo Electrónico: Por ejemplo luis@ono.com
+      <!--Dirección de correo Electrónico: Por ejemplo luis@ono.com
 input type="email": valida que se introduzca un email válido
 -->
-<label for="email">Email</label>
-<input type="email" id="email" name="email">
-<br><br>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" />
+      <br /><br />
 
+      <button type="submit" id="enviar">Enviar     </button>
+
+      <button type="reset" id="resetear">Limpiar datos</button>
     </form>
 
-
     <script>
+          let enviar=true;
+          document.getElementById("altaSocio").addEventListener("submit", function(event)
+      {
+          /*Evitar el envío del formulario para poder realizar las validaciones necesarias antes*/
+          event.preventDefault();
 
-        /*Script de validación de campos*/
-        
-        
-            /*
-        Teléfono: Por Ejemplo (963) 498-473
-        Móvil: Por ejemplo 687-458-785 y debe empezar por 6.
-        DNI: Por ejemplo 24.547.785-T
-        Num. Cuenta Corriente: Por ejemplo 0098-5098-76-9876754568
-             * /
-        
-        
+          /*validar campo teléfono  Teléfono: Por Ejemplo (963) 498-473*/
+          let nTelefono= document.getElementById("telefono").value; //guardo el valor introducido por el cliente en nTelefono
+          let expTelefono=/^\(\d{3}\) \d{3}-\d{3}$/;
+          if (!expTelefono.test(telefono))
+            {
+                alert('Formato Teléfono inválido');
+                enviar= false;
+            }
+
+        /*validar campo Móvil: Por ejemplo 687-458-785 y debe empezar por 6.*/
+         let nMovil=document.getElementById("movil").value;
+         let expMovil=/^6\d{2}-\d{3}-\d{3}$/;
+         if(!expMovil.test(nMovil))
+         {
+            alert('Formato Móvil inválido');
+            enviar= false;
+         }
+
+
+       /*validar  DNI: Por ejemplo 24.547.785-T*/
+       let nDni=document.getElementById("dni").value;
+       let expDNI=/^\d{2}\.\d{3}\.\d{3}-[A-Z]$/;
+       if(!expDNI.test(nDni))
+       {
+        alert('Formato DNI inválido');
+            enviar= false;
+       }
+
+        /*validar Num. Cuenta Corriente: Por ejemplo 0098-5098-76-9876754568*/
+        let nCuenta=document.getElementById("dni").value;
+       let expCuenta=/^\d{2}\.\d{3}\.\d{3}-[A-Z]$/;
+       if(!expCuenta.test(nCuenta))
+       {
+        alert('Formato Cuenta Corriente inválido');
+            enviar= false;
+       }
+
+       if(enviar)
+       {
+        this.submit(); //envío el formulario
+       }
+
+      })
+
     </script>
-
-
-</body>
+  </body>
 </html>
