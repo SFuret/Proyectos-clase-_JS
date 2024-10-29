@@ -1,0 +1,25 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    margin: 0 auto;
+    width: 50vw;
+    height: 100vh;
+    text-align: center;
+   
+}
+
+
+form{
+    width: 80%;
+    height: 70%;
+    margin-top: 10vh;
+    border: 2px solid rgb(131, 126, 126);
+    background-color: rgb(253, 233, 209);
+}
+
+.boton{
+width: 40px;
+}

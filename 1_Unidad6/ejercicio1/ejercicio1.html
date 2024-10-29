@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo1.css">
+    <script src="funciones.js" defer></script>
+    <title>Librería</title>
+</head>
+<body>
+    <form action="" >
+        <h1>LIBRERÍAS VALENCIA</h1>
+        <br><br>
+
+        <label for="titulo">TÍTULO</label>
+        <input type="text" id="titulo" name="titulo" >
+        <br><br>
+
+        <label for="autor">AUTOR</label>
+        <input type="text" id="autor" name="autor">
+        <br><br>
+
+        <label for="precio">PRECIO</label>
+        <input type="text" id="precio" name="precio">
+        <br><br>
+
+        <label for="editorial">EDITORIAL</label>
+        <select name="editorial" id="editorial">
+            <option value="default">Seleccione</option>
+            <option value="planeta">Planeta</option>
+            <option value="adams">Adams</option>
+            <option value="amanecer">Amanecer</option>
+        </select>
+        <br><br>
+
+
+        <button type="button" onclick="addEditorial()">Añadir Editorial</button>
+        <input type="text" id="editorialNueva" name="editorialNueva">
+        <br><br>
+
+        <label for="ubicacion">UBICACIÓN:</label>
+        <label></label>    
+
+        <button type="button" class="boton">+</button>
+        <button type="button" class="boton">-</button>
+
+
+        
+    </form>
+</body>
+</html>
