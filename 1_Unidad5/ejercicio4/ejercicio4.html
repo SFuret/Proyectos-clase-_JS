@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="ejercicio4.js"></script>
     <title>Alta de Personas</title>
 </head>
 <body>
@@ -10,12 +11,12 @@
         <label>Rellene los siguientes datos y envíelos para insertar nueva persona:</label>
         <br><br>
 
-        <label for="dni">DNI</label>
-        <input type="text" id="dni" name="dni" maxlength="9">
+        <label for="dni" >DNI</label>
+        <input type="text" id="dni" name="dni" maxlength="9" class="requerido" onfocus="colorCaja(this.id)"  onblur="comprobarValido(this.id)"  required> 
         <br><br>
 
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre">
+        <label for="nombre" >Nombre</label>
+        <input type="text" id="nombre" name="nombre" class="requerido"  onfocus="colorCaja(this.id)" onblur="comprobarValido(this.id)" required>
          <br><br>
 
         <label for="foto">Foto</label>
@@ -27,7 +28,7 @@
        <br><br>
 
         <label for="poblacion">Población</label>
-        <input type="text" id="provincia" name="provincia" list="provinciasSugeridas" autocomplete="on">
+        <input type="text" id="provincia" name="provincia" list="provinciasSugeridas" autocomplete="on" class="requerido"  onfocus="colorCaja(this.id)" onblur="comprobarValido(this.id)" required>
         <datalist id="provinciasSugeridas">
             <option value="default">Seleccione Población</option>
             <option value="valencia">Valencia</option>

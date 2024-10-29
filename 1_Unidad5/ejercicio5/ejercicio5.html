@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Logueo</title>
+   
+</head>
+<body>
+    <div id="contenedor">
+        <div id="exterior">
+            <form action="" id="logueo">
+                <h1>Formulario de logueo personalizado</h1>
+                <br>
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" name="usuario" minlength="3" maxlength="10">
+                <br><br>
+
+                <label for="pass">Password</label>
+                <input type="password" id="pass" name="pass">
+                <br><br>
+
+                <label for="colorFondo">Color Fondo</label>
+                <input type="text" id="colorFondo" name="colorFondo" placeholder="Ingresa un color o código hex">
+                <br><br>
+
+                <input type="checkbox" id="recordar" name="recordar" value="recordar">
+                <label for="recordar">Recordar</label>
+
+                <button type="submit">Entrar</button>
+                <br><br>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let colores = {
+            "rojo": "#FF0000",
+            "verde": "#008000",
+            "azul": "#0000FF",
+            "amarillo": "#FFFF00",
+            "naranja": "#FFA500",
+            "rosa": "#FFC0CB",
+            "negro": "#000000",
+            "blanco": "#FFFFFF",
+            "gris": "#808080",
+            "violeta": "#800080"
+        };  
+
+
+        /*TRABAJO CON COOKIES*/
+        // Función para guardar los datos en cookies
+        function guardarDatos() {
+            if (document.getElementById("recordar").checked) {
+                let usuario = document.getElementById("usuario").value;
+                let pass = document.getElementById("pass").value;
+
+                // Guardar los datos en cookies
+                document.cookie = `usuario=${usuario}; path=/; max-age=31536000`; // 1 año
+                document.cookie = `pass=${pass}; path=/; max-age=31536000`; // 1 año
+            }
+        }
+
+        // Función para cargar los datos desde las cookies
+        function cargarDatos() {
+            let cookies = document.cookie.split('; ');
+            let usuario = '';
+            let pass = '';
+
+            cookies.forEach(cookie => {
+                let [clave, valor] = cookie.split('=');
+                if (clave === 'usuario') {
+                    usuario = valor;
+                } else if (clave === 'pass') {
+                    pass = valor;
+                }
+            });
+
+            // Cargar los datos en el formulario
+            if (usuario) {
+                document.getElementById("usuario").value = usuario;
+            }
+            if (pass) {
+                document.getElementById("pass").value = pass;
+            }
+        }
+
+        
+        window.onload = cargarDatos;  //CARGO LOS DATOS GUARDADOS EN LAS COOKIES AL CARGAR LA PÁGINA
+
+        /*FIN TRABAJO CON COOKIES*/
+
+        document.getElementById("logueo").addEventListener("submit", function(event) {
+            // Evitar el envío del formulario para poder realizar las validaciones necesarias antes
+            event.preventDefault();
+
+            // Escoger el color entrado por el usuario
+            let colorMargin = document.getElementById("colorFondo").value; // Obtengo el color
+            colorMargin = colorMargin.toLowerCase();
+            let codigoHex = colores[colorMargin];
+
+            // Verificar si el color ingresado no está en el array colores
+            if (codigoHex === undefined) {
+                codigoHex = "#FFFFFF"; // Color predeterminado si no se encuentra
+            }
+            
+            // Cambiar color del contenedor
+            document.getElementById('exterior').style.backgroundColor = codigoHex;
+
+          
+            guardarDatos(); //GUARDO LOS DATOS EN LAS COOKIES AL ENVIAR EL FORMULARIO
+        });
+    </script>
+</body>
+</html>
