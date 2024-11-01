@@ -1,0 +1,68 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    width: 960px;
+    height: 80vh;
+    margin: 0 auto;    
+    font-size: 16px; /*general para referencia del em*/
+}
+
+/*pongo estilo a la tabla*/
+table{    
+margin-top: 5vh;
+margin-left: 10%;
+}
+
+table tr,td{ /*todos los td y tr*/
+width: 10px;
+height: 10px;
+}
+
+/*Paleta de colores*/
+#paletaColores {
+   margin-top: 10vh; 
+   width: 100%;
+}
+#paletaColores div{
+    width: 20vh;
+    height: 8vh;
+    float: left;
+    border: 1px solid black;
+}
+
+#div1{
+    background-color: rgb(255, 251, 0);
+}
+
+#div2{
+    background-color: rgb(0, 255, 21);
+}
+
+#div3{
+    background-color: rgb(20, 20, 19);
+}
+
+#div4{
+    background-color: rgb(255, 64, 0);
+}
+
+#div5{
+    background-color: rgb(12, 15, 207);
+}
+
+#div6{
+    background-color: rgb(252, 252, 252);
+}
+
+#estadoPincel{
+    clear: both; /* evitar que un elemento quede al lado de elementos flotantes*/
+    width: 100%;
+    padding-bottom: 15px;
+}
+
+p{
+    font-size: 1.5em;
+}

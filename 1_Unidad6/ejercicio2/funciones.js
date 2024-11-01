@@ -49,3 +49,20 @@ function cargarAnterior() {
         divContenedorImagen.style.backgroundImage = `url('${imagen}')`;
     }
 }
+
+/*TEMPORIZADOR*/
+
+// Temporizador que cambia la imagen cada 3 segundos que son 3000 ms
+let temporizador = setInterval(cargarSiguiente, 3000); // llama a la funcion cargarSiguiente() pasado los 3 minutos
+
+
+//Pauso el temporizador cuando el usuario navega manualmente
+document.getElementById('derecha').addEventListener('click', () => {
+    clearInterval(temporizador); /*limpiar el intervalo en los eventos de clic */
+    cargarSiguiente();
+});
+
+document.getElementById('izquierda').addEventListener('click', () => {
+    clearInterval(temporizador);
+    cargarAnterior();
+});
