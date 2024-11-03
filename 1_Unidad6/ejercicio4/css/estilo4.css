@@ -1,0 +1,43 @@
+
+/*Generales*/
+
+*{
+  margin: 0px;
+  padding: 0px;  
+}
+
+body{
+    width: 90vw;
+    height:90vh;
+    margin: 0 auto;
+}
+
+/*tablero*/
+#tablero{
+    margin-top: 5vh;
+}
+#tablero table td{
+    width: 15px;
+    height: 15px;
+}
+#tablero table {
+    border:1px solid black;
+    border-collapse: collapse;
+}
+
+/*grado dificultad*/
+#contDificult{
+    width: 30vw;
+    margin-top: 5vh;
+    border: 2px solid rgb(0, 0, 0);
+    background-color: rgb(239, 207, 165);
+}
+
+/*botón*/
+#seleccionar{
+    border: 3px solid #281a17; /* Color y grosor del borde */
+    border-radius: 8px; /* Borde redondeado*/
+    padding: 8px 8px;
+    background-color: rgb(61, 223, 229);
+    margin-left: 5vh;
+}

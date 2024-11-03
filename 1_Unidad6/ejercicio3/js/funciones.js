@@ -31,7 +31,7 @@ let colorActivo = 'black'; // Color por defecto
 // Función para seleccionar el color activo desde la paleta de colores
 function seleccionarColor() {
     const arrayDivs = document.querySelectorAll('#paletaColores .seleccionado'); // Selecciona todos los divs de la paleta de colores
-
+    /*pongo un escuchador de evento click a cada div del array*/    
     arrayDivs.forEach(div => {
         div.addEventListener('click', function(event) {
             colorActivo = getComputedStyle(event.target).backgroundColor; // Pongo en mi variable color activo el color 
