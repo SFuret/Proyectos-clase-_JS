@@ -46,7 +46,6 @@ function colocarMinas(cantMinas, totalCeldas) {
 const botonSeleccionar = document.getElementById("seleccionar");
 if (botonSeleccionar) {
     botonSeleccionar.addEventListener("click", function () {
-        inactivar=false;//toma este valor al empezar el juego
         // Obtengo el valor seleccionado por el usuario cada vez que se hace clic
         let valorSelect = document.getElementById("dificultad")?.value;
         if (!valorSelect) return;
@@ -140,42 +139,51 @@ function cantMinasCeldasAdyacentes(celdaDesc) {
 }
 
 //celdas a mostrar su contenido
-/* Mostrar contenido de celdas */
 function celdasAMostrar(cantCeldasMostrar) {
-    let celdasTabla = document.querySelectorAll("td");
+    let celdasTabla = document.querySelectorAll("td");// Obtengo todas las celdas  
     let celdasMostradas = [];
-    
+    let minasAdyacentes=0;
     for (let i = 0; i < celdasTabla.length && cantCeldasMostrar > 0; i++) {
-        if (!celdasTabla[i].classList.contains('descubierta')) {
-            celdasTabla[i].classList.add("descubierta");
-            celdasTabla[i].style.backgroundColor = celdaConMina(celdasTabla[i]) ? "red" : "green";
+        if (!celdasTabla[i].classList.contains('descubierta')) {//si no tiene la clase descubierta
+            celdasTabla[i].classList.add("descubierta");//le pongo la clase descubierta
+            celdasTabla[i].style.backgroundColor = celdaConMina(celdasTabla[i]) ? "red" : "green";//comprueblo si tiene mina y si tiene le pongo fondo rojo, en caso contrario fondo verde
             
-            let minasAdyacentes = cantMinasCeldasAdyacentes(celdasTabla[i]);
-            if (minasAdyacentes !== 0) {
-                celdasTabla[i].style.color="white";
-                celdasTabla[i].innerHTML = minasAdyacentes;
-            }
+            /*COLOCAR NÚMERO DE MINAS ADYACENTES*/
+            minasAdyacentes=cantMinasCeldasAdyacentes(celdasTabla[i]);
+            if(minasAdyacentes!==0){
+                celdasTabla[i].innerHTML=minasAdyacentes; //muestro la cantidad de minas en celdas adyacentes
+            }            
+            /**FIN***/
 
             celdasMostradas.push(celdasTabla[i]);
             cantCeldasMostrar--;
-
-            if (celdaConMina(celdasTabla[i])) {
-                inactivar = true;
-                break;
-            }
+            if (celdaConMina(celdasTabla[i])) inactivar = true;
         }
     }
-
-    return celdasMostradas;
+    return celdasMostradas;//devuelvo el array de todas las celdas que se van a mostrar su contenido
 }
 
 /* Comprobar si hay celdas que aún no estén descubiertas */
+function comprobarTodasDescubiertas() {
+    let celdas = document.querySelectorAll("td"); // Obtengo todas las celdas
+    let todasDescubiertas = true; // Estado inicial
 
+    for (let celda of celdas) {
+        if (!celda.classList.contains('descubierta')) { // Si alguna celda no está descubierta
+            todasDescubiertas = false; //no están todas descubiertas
+            break; // Salir del bucle al encontrar una celda no descubierta
+        }
+    }
+
+    return todasDescubiertas; //retorna false si hay alguna celda que no está descubierta aún
+}
+
+/*
 function comprobarTodasDescubiertas() {
     let celdas = document.querySelectorAll("td");
     return Array.from(celdas).every(celda => celda.classList.contains('descubierta'));
 }
-
+*/
 
 /* Obtener celdas no descubiertas */
 function celdasSinDescubrir() {
@@ -203,8 +211,7 @@ function ponerEventoClickCeldas() {
                 console.log("¡Todas las celdas han sido descubiertas!");
                 desactivarClickCeldas();
             }
-        }, { once: true }); // El evento click se ejecuta una sola vez por celda. 
-        //Esto asegura que cada celda solo responda al primer clic
+        }, { once: true }); // El evento click se ejecuta solo una vez por celda
     });
 }
 
@@ -219,4 +226,28 @@ function desactivarClickCeldas() {
 
 /* Llamar a ponerEventoClickCeldas solo una vez */
 ponerEventoClickCeldas();
+
+//hacer todo mientras todas las celdas no tengan "descucierta"
+
+/*******TRABAJANDO*******/
+
+/*pongo el evento click a todas las celdas de la tabla */
+/*do{
+function ponerEventoClickCeldas() {
+    let celdasTabla = document.querySelectorAll("td");
+    celdasTabla.forEach(celda => {
+        celda.addEventListener('click', function() {
+            if (inactivar) return;
+
+            let cantidadCeldas = calcularCantidadCeldasDescubrir(filas, columnas);
+            let arrayCeldasMostrar = celdasAMostrar(cantidadCeldas);
+
+            if (inactivar) {
+                desactivarClickCeldas();
+            }
+        });
+    });
+}
+}while(!comprobarTodasDescubiertas()); //mientras que hay alguna celda que no esté aún descubierta
+/*********FIN*********/
 
