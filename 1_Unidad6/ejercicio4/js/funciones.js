@@ -139,36 +139,6 @@ function cantMinasCeldasAdyacentes(celdaDesc) {
     return cantMinasAdyacentes; // Devuelvo la cantidad de minas adyacentes a la celda
 }
 
-//celdas a mostrar su contenido
-/* Mostrar contenido de celdas */
-function celdasAMostrar(cantCeldasMostrar) {
-    let celdasTabla = document.querySelectorAll("td");
-    let celdasMostradas = [];
-    
-    for (let i = 0; i < celdasTabla.length && cantCeldasMostrar > 0; i++) {
-        if (!celdasTabla[i].classList.contains('descubierta')) {
-            celdasTabla[i].classList.add("descubierta");
-            celdasTabla[i].style.backgroundColor = celdaConMina(celdasTabla[i]) ? "red" : "green";
-            
-            let minasAdyacentes = cantMinasCeldasAdyacentes(celdasTabla[i]);
-            if (minasAdyacentes !== 0) {
-                celdasTabla[i].style.color="white";
-                celdasTabla[i].innerHTML = minasAdyacentes;
-            }
-
-            celdasMostradas.push(celdasTabla[i]);
-            cantCeldasMostrar--;
-
-            if (celdaConMina(celdasTabla[i])) {
-                inactivar = true;
-                break;
-            }
-        }
-    }
-
-    return celdasMostradas;
-}
-
 /* Comprobar si hay celdas que aún no estén descubiertas */
 
 function comprobarTodasDescubiertas() {
@@ -184,6 +154,34 @@ function celdasSinDescubrir() {
 }
 
 
+/* Mostrar contenido de celdas */
+function celdasAMostrar(cantCeldasMostrar) {
+    let celdasTabla = celdasSinDescubrir(); //array con celdas que aún no se han descubierto
+    let celdasMostradas = [];
+    
+    for (let i = 0; i < celdasTabla.length && cantCeldasMostrar > 0; i++) {           
+                     
+
+            if(!celdasTabla[i].classList.contains('minaActiva')){  //solo a las que no contengan una mina          
+            celdasTabla[i].classList.add("descubierta");
+            celdasTabla[i].style.backgroundColor = "green";
+            
+            let minasAdyacentes = cantMinasCeldasAdyacentes(celdasTabla[i]);
+            if (minasAdyacentes !== 0) {
+                celdasTabla[i].style.color="white";
+                celdasTabla[i].innerHTML = minasAdyacentes;
+            }
+
+            celdasMostradas.push(celdasTabla[i]);
+            cantCeldasMostrar--;        
+            }
+
+    }
+}
+
+
+
+
 
 /*pongo el evento click a todas las celdas que no estén descubiertas aún de la tabla */
 /* Agregar evento click a las celdas no descubiertas */
@@ -191,12 +189,19 @@ function ponerEventoClickCeldas() {
     let celdasTabla = celdasSinDescubrir();
 
     celdasTabla.forEach(celda => {
-        celda.addEventListener('click', function() {
-            if (inactivar) return;
-
-            let cantidadCeldas = calcularCantidadCeldasDescubrir(filas, columnas);
-            let arrayCeldasMostrar = celdasAMostrar(cantidadCeldas);
-
+        celda.addEventListener('click', function(event) {
+            
+            if(event.target.classList.contains('minaActiva')) //si la celda que se ha hecho click tiene una mina desactiva los eventos y no deja seguir jugando
+            {
+                event.target.style.backgroundColor ="red";
+                inactivar=true;
+                
+            }
+            else{ //si no tiene mina
+                let cantidadCeldas = calcularCantidadCeldasDescubrir(filas, columnas);
+                celdasAMostrar(cantidadCeldas);
+            }
+            
             if (inactivar) {
                 desactivarClickCeldas();
             } else if (comprobarTodasDescubiertas()) {
