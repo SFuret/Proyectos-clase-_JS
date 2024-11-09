@@ -9,7 +9,32 @@ const dificultad = [
 let filas=0;  //contendrá la cantidad de filas que tendrá la tabla a crear
 let columnas=0; //contendrá la cantidad de columnas que tendrá la tabla a crear
 let inactivar=false; //si encuentra alguna mina se pondrá en true
+let minasIniciales=0;
 
+//temporizador
+let segundos = 0; // Variable para contar los segundos
+let temporizador; // Variable para almacenar el temporizador
+
+function iniciarTemporizador() {
+    temporizador = setInterval(() => {
+        segundos++;
+        document.getElementById("temporizador").style.backgroundColor="white"
+        document.getElementById("temporizador").innerText = `Segundos: ${segundos}`;
+    }, 1000); // Ejecuta cada 1000 ms (1 segundo)
+}
+
+// Para reiniciar el contador
+function reiniciarTemporizador() {
+    clearInterval(temporizador);
+    segundos = 0;
+    document.getElementById("temporizador").innerText = `Segundos: ${segundos}`;
+}
+
+//detener temporizador
+function detenerTemporizador() {
+    clearInterval(temporizador);
+    document.getElementById("temporizador").innerText = `Segundos: ${segundos}`;
+}
 
 /**** BUSCAR LAS POSICIONES DONDE SE COLOCARÁN LAS MINAS *****/
 
@@ -29,6 +54,7 @@ function buscarPosicionesParaMinas(cantMinas, totalCeldas) {
 
 /**** COLOCAR LAS MINAS *****/
 function colocarMinas(cantMinas, totalCeldas) {
+   
     let arrayTD = document.querySelectorAll("td");// Obtengo las posiciones donde deben colocarse las minas
     let posicionesMinas = buscarPosicionesParaMinas(cantMinas, totalCeldas);
     posicionesMinas.forEach(pos => {
@@ -40,12 +66,21 @@ function colocarMinas(cantMinas, totalCeldas) {
     });
 }
 
+
 /**** CREAR TABLA *****/
 
 // Verifico que el botón "seleccionar" existe antes de añadir el evento
 const botonSeleccionar = document.getElementById("seleccionar");
-if (botonSeleccionar) {
+if (botonSeleccionar) {    
     botonSeleccionar.addEventListener("click", function () {
+        document.getElementById("resultado").innerHTML="";
+        if(segundos===0)
+        {
+            iniciarTemporizador();
+        }
+        else{
+            reiniciarTemporizador();
+        }
         inactivar=false;//toma este valor al empezar el juego
         // Obtengo el valor seleccionado por el usuario cada vez que se hace clic
         let valorSelect = document.getElementById("dificultad")?.value;
@@ -76,6 +111,8 @@ if (botonSeleccionar) {
             const totalCeldas = filas * columnas;
             colocarMinas(dificul.minas, totalCeldas);
             ponerEventoClickCeldas();
+            minasIniciales=dificul.minas;
+            minasPorDesactivar(minasIniciales);            
         } else {
             // Si el grado de dificultad no es válido, mostramos un mensaje de error
             document.getElementById("tablero").innerHTML = `<p>Grado de dificultad no válido.</p>`;
@@ -85,6 +122,21 @@ if (botonSeleccionar) {
     console.error("Botón 'seleccionar' no encontrado.");
 }
 
+
+//Mostrar minas por desactivar
+function minasPorDesactivar(cantidad)
+{
+    document.getElementById('minaPorDesactivar').style.background="white";
+    document.getElementById('minaPorDesactivar').innerHTML= "Minas activas: "+cantidad;   
+    if(cantidad===0)
+    {
+        document.getElementById("resultado").style.fontSize="30px";
+        document.getElementById("resultado").style.color="green";  
+        document.getElementById("resultado").innerHTML="Enhorabuena, has ganado!!!";
+    }
+    
+   
+}
 
 /*********MOSTRAR EL CONTENIDO DE LAS CELDAS QUE SE VAN DESCUBRIENDO**********/
 
@@ -162,7 +214,7 @@ function celdasAMostrar(cantCeldasMostrar) {
     for (let i = 0; i < celdasTabla.length && cantCeldasMostrar > 0; i++) {           
                      
 
-            if(!celdasTabla[i].classList.contains('minaActiva')){  //solo a las que no contengan una mina          
+            if((!celdasTabla[i].classList.contains('minaActiva'))&&(!celdasTabla[i].classList.contains('minaDesactivada'))){  //solo a las que no contengan una mina          
             celdasTabla[i].classList.add("descubierta");
             celdasTabla[i].style.backgroundColor = "green";
             
@@ -179,40 +231,25 @@ function celdasAMostrar(cantCeldasMostrar) {
     }
 }
 
-
-
-
-
-/*pongo el evento click a todas las celdas que no estén descubiertas aún de la tabla */
-/* Agregar evento click a las celdas no descubiertas */
-function ponerEventoClickCeldas() {
-    let celdasTabla = celdasSinDescubrir();
-
-    celdasTabla.forEach(celda => {
-        celda.addEventListener('click', function(event) {
-            
-            if(event.target.classList.contains('minaActiva')) //si la celda que se ha hecho click tiene una mina desactiva los eventos y no deja seguir jugando
-            {
-                event.target.style.backgroundColor ="red";
-                inactivar=true;
-                
-            }
-            else{ //si no tiene mina
-                let cantidadCeldas = calcularCantidadCeldasDescubrir(filas, columnas);
-                celdasAMostrar(cantidadCeldas);
-            }
-            
-            if (inactivar) {
-                desactivarClickCeldas();
-            } else if (comprobarTodasDescubiertas()) {
-                console.log("¡Todas las celdas han sido descubiertas!");
-                desactivarClickCeldas();
-            }
-        }, { once: true }); // El evento click se ejecuta una sola vez por celda. 
-        //Esto asegura que cada celda solo responda al primer clic
-    });
+// Función para desactivar una mina (un solo clic derecho)
+function desactivarMina(celda) {
+    if(celda.classList.contains("minaActiva")) //comprueba que tenga una mina la celda
+    {
+        celda.classList.remove("minaActiva");
+        celda.classList.add("minaDesactivada");
+        celda.style.backgroundColor = "gray"; // Cambia el color o aspecto para indicar que está desactivada
+        minasIniciales--;
+        minasPorDesactivar(minasIniciales);
+    }
+   
 }
 
+
+// Función para marcar una celda con "?" (doble clic derecho)
+function marcarConPregunta(celda) {
+    celda.innerHTML = "?";
+    console.log("Celda marcada con ?");
+}
 
 /*quito evento click a todas las celdas de la tabla, se va a ejecutar cuando se descubra una mina*/
 function desactivarClickCeldas() {
@@ -222,6 +259,68 @@ function desactivarClickCeldas() {
     });
 }
 
+
+/*pongo el evento click a todas las celdas que no estén descubiertas aún de la tabla */
+/* Agregar evento click a las celdas no descubiertas */
+function ponerEventoClickCeldas() {
+    let celdasTabla = celdasSinDescubrir();
+    let inactivar = false; // Declaración de la variable inactivar
+
+    // Escuchador para clic izquierdo
+    celdasTabla.forEach(celda => {
+        celda.addEventListener('click', function(event) {
+            
+            if (event.target.classList.contains('minaActiva')) { // Si la celda tiene una mina, se desactiva el juego
+                event.target.style.backgroundColor = "red";
+                inactivar = true;
+            } else { // Si no tiene mina
+                let cantidadCeldas = calcularCantidadCeldasDescubrir(filas, columnas);
+                celdasAMostrar(cantidadCeldas);
+            }
+            
+            if (inactivar) {              
+                document.getElementById("resultado").style.fontSize="30px";
+                document.getElementById("resultado").style.color="red";  
+                document.getElementById("resultado").innerHTML="Has perdido!!!"; 
+                detenerTemporizador();               
+                desactivarClickCeldas();
+            } else if (comprobarTodasDescubiertas()) {
+                console.log("¡Todas las celdas han sido descubiertas!");
+                desactivarClickCeldas();
+            }
+        }, { once: true }); // El evento click se ejecuta una sola vez por celda.
+
+        // Variables para manejo de clic derecho y doble clic derecho
+        let contadorClicsDerechos = 0;
+        let temporizadorClicDerecho;
+
+        // Escuchador para clic derecho
+        celda.addEventListener("contextmenu", (evento) => {
+            evento.preventDefault(); // Evita que aparezca el menú contextual
+            contadorClicsDerechos++;
+
+            if (contadorClicsDerechos === 1) {
+                // Si es el primer clic derecho, esperamos por un segundo clic
+                temporizadorClicDerecho = setTimeout(() => {
+                    // Si no hay segundo clic, se desactiva la mina
+                    contadorClicsDerechos = 0; // Reinicia el contador
+                    desactivarMina(evento.target);
+                }, 300); // Espera 300ms para ver si hay un segundo clic derecho
+            } else if (contadorClicsDerechos === 2) {
+                // Si es un doble clic derecho
+                clearTimeout(temporizadorClicDerecho); // Cancela el temporizador del primer clic
+                marcarConPregunta(evento.target);
+                contadorClicsDerechos = 0; // Reinicia el contador
+            }
+        });
+    });
+}
+
+
+
+
+
 /* Llamar a ponerEventoClickCeldas solo una vez */
+
 ponerEventoClickCeldas();
 
