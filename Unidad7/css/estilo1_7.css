@@ -62,3 +62,29 @@ tr th, td{
     text-align: left;
 }
 
+/*****************MODIFICAR EMPLEADOS********************/
+#midificarEmbabezado{
+ margin-top: 20vh;
+font-size: 2rem;
+margin-left: 30%;
+}
+
+#modificarForm{
+    margin-top: 5vh;
+    width: 40%;
+    height: 50vh;    
+    margin-left: 30%;
+    font-size: 1.3rem;
+}
+#agrupaElementos{
+    margin-left: 15%;
+}
+
+.entrarDatos{
+   float: right;
+   margin-right: 30%;
+}
+
+#edad{    
+   margin-right: 54%;
+}
