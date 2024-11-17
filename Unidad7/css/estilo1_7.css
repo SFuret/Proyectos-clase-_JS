@@ -1,0 +1,64 @@
+:root{
+    --colorFondo:rgb(191, 212, 223);
+    --colorAcciones:rgb(104, 135, 223);
+    --colorBoton:rgb(102, 102, 210);
+}
+
+/*Generales*/
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    width: 80vw;
+    height: 85vh;
+    margin: 0 auto;
+    background-color: var(--colorFondo);
+}
+
+/*Principales*/
+#acciones{
+    width: 100%;
+    height: 10vh;
+   /* background-color: var(--colorAcciones);
+    margin-left: 10%;    */
+    margin-top: 5vh;
+}
+
+#resultados{
+    margin-top: 10vh;
+    width: 100%;
+    height: 60vh;
+    
+}
+
+.boton{
+    padding: 6px 12px;
+    background-color: var(--colorBoton);
+     margin-top: 0.2vh;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+
+
+#listar{
+
+}
+#insertar{
+   margin-left: 50%;
+   display: none; /*No quiero que se muestre al principio*/
+}
+
+/*css de la tabla que voy a generar en el script*/
+table{
+    margin-top: 5vh;
+}
+
+tr th, td{
+    width: 15%;
+    text-align: left;
+}
+

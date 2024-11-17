@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo API</title>
+    <script>
+        // Creo el objeto para la petición
+        var peticion = new XMLHttpRequest();
+
+        // Programo respuesta a la petición
+        peticion.onreadystatechange = function (){
+            if (peticion.readyState == 4 && peticion.status == 200){
+                // console.log(peticion.responseText);
+                var datosJson = JSON.parse (peticion.responseText);
+                empleadosRecibidos = datosJson;
+                for (var i = 0; i < empleadosRecibidos.length; i++){
+                    var nombreEmpleado = empleadosRecibidos[i].nombre;
+                    document.getElementById("caja").innerHTML += nombreEmpleado 
+                    + "<br>";
+                }
+
+            }
+        };
+
+        // FIN Programo respuesta a la petición
+
+        // Establezco la comunicación
+        peticion.open("GET", "http://test-api.jtarrega.es/api/empleados", true);
+        // opmunico
+        peticion.send();
+    </script>
+</head>
+<body>
+    <div id="caja"></div>
+</body>
+</html>
