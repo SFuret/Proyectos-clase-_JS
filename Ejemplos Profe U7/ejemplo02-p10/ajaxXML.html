@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+    <script type="text/javascript">
+        // Creamos el objeto XMLHttpRequest que permite la 
+        // comunicación asíncrona con el servidor 
+        var peticion = new XMLHttpRequest();
+        function obtenerDatosServidor() {
+            // Cada vez que cambia el estado del objeto XMLHttpRequest  
+            // se ejecuta la funcion de callback 
+            peticion.onreadystatechange = function () {
+                // Si 4 Comunicación completada y 200 comunicación OK  
+                // devuelve el caja el contenido del fichero que se  
+                // almacena en la propiedad responseText del objeto 
+                if (peticion.readyState == 4 && peticion.status == 200) {
+                    //Obtenemos la respuesta del servidor en formato XML 
+                    var datosXml = peticion.responseXML;
+                    //Obtenemos la raíz Obras del documento 
+                    var datos = datosXml.getElementsByTagName("Obras")[0];
+                    // Obtenemos todos los libros del fichero XML 
+                    var obras = datos.getElementsByTagName("Libro");
+                    //Recorremos todos los elementos Libro del documento 
+                    for (var i = 0; i < obras.length; i++) {
+                        libro = obras[i];
+                        autor = libro.getElementsByTagName("Autor")[0];
+                        valorAutor = autor.innerHTML;
+                        titulo = libro.getElementsByTagName("Titulo")[0];
+                        valorTitulo = titulo.innerHTML;
+                        document.getElementById('caja').innerHTML += "Autor: " + valorAutor + " - Título: "+valorTitulo+"<br/>"; 
+                    }
+                }
+            };
+            // Configura conexión asincrona con una URL  
+            peticion.open("GET", "datosXML.xml", true);
+            // Realiza la conexión con la URL 
+            peticion.send();
+        } 
+    </script>
+</head>
+<body>
+    <form>
+        <input type="button" value="Obtener Datos" onclick="obtenerDatosServidor()">
+    </form>
+    <div id="caja"></div>
+</body>
+</html>

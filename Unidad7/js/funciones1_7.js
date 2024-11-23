@@ -58,7 +58,7 @@ peticion.onreadystatechange=function(){
      boton.addEventListener('click', function () {
          // Obtener el ID del empleado desde el botón
          const empleadoId = this.id.replace("mod", "");
-         console.log("Modificar empleado con ID:", empleadoId);
+        // console.log("Modificar empleado con ID:", empleadoId);
          window.location.href = `modificarEmpleado.html?id=${empleadoId}`; //paso el id=valor a la otra página
      });
  });

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage</title>
+    <script type="text/javascript">
+        function anadeProducto() {
+            var producto = document.getElementById('producto').value;
+            var precio = document.getElementById('precio').value;
+            sessionStorage.setItem(producto, precio); // ó 
+            sessionStorage[producto] = precio
+            mostrarDatos(producto);
+        }
+        function mostrarDatos() {
+            var datosDisponibles = document.getElementById('datosDisponibles');
+            datosDisponibles.innerHTML = '';
+            for (var i = 0; i < sessionStorage.length; i++) {
+                var producto = sessionStorage.key(i);
+                var precio = sessionStorage.getItem(producto);
+                datosDisponibles.innerHTML += '<div>' + producto + '-' + precio + '</div>';
+            }
+        }
+        function limpiarVista() {
+            var datosDisponibles = document.getElementById('datosDisponibles');
+            datosDisponibles.innerHTML = 'Pantalla Borrada. Los datos permanecen.';
+        }
+        function borrarTodo() {
+            sessionStorage.clear();
+            mostrarDatos();
+        } 
+    </script>
+</head>
+<body>
+    <form name="formProductos">
+        Producto:<input type="text" name="producto" id="producto"><br>
+        Precio:<input type="text" name="precio" id="precio"><br>
+        <input type="button" onclick="anadeProducto()" name="guardar" id="guardar" value="Guardar"><br>
+        <input type="button" onclick="mostrarDatos()" name="mostrar" id="mostrar" value="Mostrar Datos"><br>
+        <input type="button" onclick="limpiarVista()" name="limpiar" id="limpiar" value="Borrar Pantalla"><br>
+        <input type="button" onclick="borrarTodo()" name="borrar" id="borrar" value="Borrar Datos"><br>
+    </form>
+    <div id="datosDisponibles">No hay información almacenada</div>
+</body>
+</html>

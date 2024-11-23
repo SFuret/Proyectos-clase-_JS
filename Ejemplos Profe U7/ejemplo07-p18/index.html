@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>localStorage con addEventListener</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        window.onload = function () { mostrar(); }
+        window.addEventListener('storage', function (e) {
+            alert("Se ha actualizado: " + e.oldValue + " por " + e.newValue);
+            mostrar();
+        });
+        function almacenar() {
+            var valorNombre = document.getElementById("nombre").value;
+            var valorSueldo = document.getElementById("sueldo").value;
+            localStorage['nombre'] = valorNombre;
+            localStorage['sueldo'] = valorSueldo;
+        }
+        function mostrar() {
+            var localValorNombre = "";
+            var localValorSueldo = "";
+            // Recuperamos el valor del nombre y el sueldo 
+            if (typeof (localStorage['nombre']) != "undefined") {
+                var localValorNombre = localStorage['nombre'];
+            }
+            if (typeof (localStorage['sueldo']) != "undefined") {
+                localValorSueldo = localStorage['sueldo'];
+            }
+            // Mostramos el valor del nombre y el sueldo 
+            document.getElementById("nombre").value = localValorNombre;
+            document.getElementById("sueldo").value = localValorSueldo;
+            alert('Datos Recuperados');
+        }
+        function borrar() {
+            // Borrarmos todos los pares clave/valor del LocalStorage 
+            alert("Datos Borrados");
+            window.localStorage.clear();
+        } 
+    </script>
+</head>
+<body>
+    Nombre: <input id="nombre" type="text" value="" /><br>
+    Sueldo: <input id="sueldo" type="text" value="" /><br>
+    <input type="button" onclick="almacenar();" value="Guardar" /><br>
+    <input type="button" onclick="borrar();" value="Borrar" />
+</body>
+</html>

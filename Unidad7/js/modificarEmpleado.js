@@ -12,6 +12,10 @@ return idempleado;
 }
 
 
+/*//cargar datos en el formulario
+document.getElementById('')*/
+
+
 document.addEventListener('DOMContentLoaded',function(){  //se ejecuta cuando el DOM ya está completamente cargado
 document.getElementById('aceptarModificar').addEventListener('click', function()
 {
@@ -20,7 +24,6 @@ document.getElementById('aceptarModificar').addEventListener('click', function()
 let nombreNuevo = document.getElementById('nombre').value;
 let edadNueva= parseInt(document.getElementById('edad').value);
 let cargoNuevo=document.getElementById('cargo').value;
-
 let contratadoNuevo=0;
 if (document.getElementById('contratado').checked) {
     contratadoNuevo = 1;
@@ -34,12 +37,12 @@ let empleadoModificado={
     contratado: contratadoNuevo
 }
 
-console.log("Mostrar:"+empleadoModificado);
+//console.log("Mostrar:"+empleadoModificado);
 //obtengo el id del empleado que quiero actualizar
 let idempleado=obtenerId();
 //url a la que haré la petición
 const url=`http://test-api.jtarrega.es/api/empleados/${idempleado}`; 
-let redirigir=0;
+let redirigir=false;
 
 // Realizar la petición POST
 fetch(url, {
@@ -48,16 +51,33 @@ fetch(url, {
         "Content-Type": "application/json", // Especifica que los datos son JSON
     },
     body: JSON.stringify(empleadoModificado) // Convertir el objeto en una cadena JSON
-})
+})/*
 .then(response => {
     if (!response.ok) {
         throw new Error("Error en la solicitud: " + response.status);
+    }    
+    if(response.status===200 || response.status===201)
+    {
+        window.location.href="../ejercicio1_7.html";
     }
-    window.location.href="../ejercicio1_7.html";
-    return response.json(); // Procesar la respuesta como JSON
+   // return response.json(); // Procesar la respuesta como JSON
 })
     .then(data => {  //se ejecuta cuando la promesa se ejecuta de forma exitosa        
-        console.log("Respuesta del servidor:", data);        
+        console.log("Respuesta del servidor:", data);       
+        redirigir=true;
+        
+    })
+    .catch(error => {
+        console.error("Hubo un error al enviar los datos:", error);
+    });*/
+
+    .then(response => {
+        // Valida directamente los códigos 200 y 201
+        if (response.status === 200 || response.status === 201) {
+            window.location.href = "../ejercicio1_7.html";
+        } else {
+            throw new Error(`Error en la solicitud: ${response.status}`);
+        }
     })
     .catch(error => {
         console.error("Hubo un error al enviar los datos:", error);

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envío datos Json</title>
+    <script>
+        var peticion = new XMLHttpRequest();
+        peticion.open("POST", "empleados.php");
+        var datosJson;
+        peticion.onreadystatechange = function () {
+            if (peticion.readyState == 4 && peticion.status == 200) {
+                respuesta = peticion.responseText;
+                document.getElementById("caja").innerHTML = respuesta;
+            }
+        };
+        peticion.setRequestHeader('Content-Type', 'application/json');
+        //var datosJson = JSON.stringify({'nombre':'Rosa Sanz', 'Edad':26, 'Puesto': 'Gerente'}, ['Edad', 'Puesto'], '\t');
+        var datosJson = JSON.stringify({
+            'nombre': 'Rosa Sanz', 'Edad': 26,
+            'Puesto': 'Gerente'
+        }, null, '\t');
+        peticion.send(datosJson); 
+    </script>
+</head>
+<body>
+    <div id="caja"></div>
+</body>
+</html>

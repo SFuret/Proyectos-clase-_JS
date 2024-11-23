@@ -1,0 +1,19 @@
+{
+    "listadoEmpleados": [
+        {
+            "nombre": "Juan Sanz",
+            "edad": 31,
+            "sucursal": "Madrid"
+        },
+        {
+            "nombre": "Ana Ros",
+            "edad": 45,
+            "sucursal": "Valencia"
+        },
+        {
+            "nombre": "Marta Mora",
+            "edad": 30,
+            "sucursal": "Barcelona"
+        }
+    ]
+}

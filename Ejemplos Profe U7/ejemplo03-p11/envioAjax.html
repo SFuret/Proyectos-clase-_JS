@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envío datos XML</title>
+    <script>
+        var peticion = new XMLHttpRequest();
+        peticion.open("POST", "autores.php");
+        var datosXml;
+        peticion.onreadystatechange = function () {
+            if (peticion.readyState == 4 && peticion.status == 200) {
+                respuesta = peticion.responseText;
+                document.getElementById("caja").innerHTML = respuesta;
+            }
+        };
+        peticion.setRequestHeader('Content-Type', 'text/xml');
+        var datosXml = "<?xml version='1.0' encoding='UTF-8' ?>";
+        datosXml += "<listado>";
+        datosXml += "<autor>Luis Sanza</autor>";
+        datosXml += "<autor>Marta Robles</autor>";
+        datosXml += "</listado>";
+        peticion.send(datosXml); 
+    </script>
+</head>
+<body>
+    <div id="caja"></div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax JSON</title>
+    <script>
+        var peticion = new XMLHttpRequest();
+        peticion.onreadystatechange = function () {
+            if (peticion.readyState == 4 && peticion.status == 200) {
+                var datosJson = JSON.parse(peticion.responseText);
+                empleadosRecibidos = datosJson.listadoEmpleados;
+                for (var i = 0; i < empleadosRecibidos.length; i++) {
+                    var nombreEmpleado = empleadosRecibidos[i].nombre;
+                    document.getElementById("caja").innerHTML +=
+                        nombreEmpleado + "<br>";
+                }
+            }
+        };
+        peticion.open("GET", "empleados.json", true);
+        peticion.send(); 
+    </script>
+</head>
+<body>
+    <div id="caja"></div>
+</body>
+</html>

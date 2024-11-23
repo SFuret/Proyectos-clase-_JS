@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión base de datos entorno cliente</title>
+    <script type="text/javascript">
+        // Array de datos con los pares de datos campo y el valor 
+        datosEmpleados = [
+            { id: 114, nombre: "Luis Sanz", edad: 35, puesto: "Gerente" },
+            { id: 206, nombre: "Ana Mora", edad: 32, puesto: "Directora" }
+        ];
+        var baseDatos;
+        // Variable que almacena la referencia a la base de datos empresa version 1 
+        var solicitud = window.indexedDB.open("empresa", 1);
+        // Evento si se ha producido error en la conexion  
+        solicitud.onerror = function (evento) {
+            document.getElementById("caja").innerHTML = "Error";
+        };
+        // Evento si la conexión ha sido correcta. 
+        solicitud.onsuccess = function (evento) {
+            // Almacenamos una referencia global a la base de datos que acabamos de abrir 
+            baseDatos = solicitud.result;
+            document.getElementById("caja").innerHTML = "Conexion/Acceso OK";
+        };
+        // Evento onupgradeneeded se ejecuta cuando no existe la base de datos  
+        // o cuando se cambia de version por lo que procedemos a crear las tablas 
+        // ObjectStore que es el equivalente a la tabla y se le pasa el campo clave 
+        solicitud.onupgradeneeded = function (evento) {
+            // Almacenamos una referencia global a la base de datos que acabamos de abrir 
+            var baseDatos = evento.target.result;
+            var tabla = baseDatos.createObjectStore("empleados", { keyPath: "id" });
+            //Recorre el array y con add añade datos al ObjectStore 
+            for (var i in datosEmpleados) {
+                tabla.add(datosEmpleados[i]);
+            }
+        }
+        // Todas las operaciones de lectura y escritura sobre la base de datos  
+        // se realizan a través de transacciones (transaction). 
+        function leer() {
+            // transaction nos permite indicar que ObjectStore queremos 
+            // utilizar y el nivel de acceso. 
+            var transaccion = baseDatos.transaction(["empleados"], "readonly");
+            // Seleccionamos el ObjectStore empleados 
+            // que equivalldría a la tabla. 
+            var tabla = transaccion.objectStore("empleados");
+            // Mediante get obtenemos los datos del empleado con id 351 
+            var solicitud = tabla.get(351);
+            // Si se produce un error mediante el evento correspondiente 
+            // mostramos el mensaje de error 
+            solicitud.onerror = function (evento) {
+                document.getElementById("caja").innerHTML =
+                    "No se han podido recuperar informacion de la base de datos";
+            };
+            // Si se ha podido realizar la consulta, result almacena el  
+            // resultado de la misma y recuperamos los datos o el mensaje 
+            // de no enxontrado en el div caja   
+            solicitud.onsuccess = function (evento) {
+                if (solicitud.result) {
+                    document.getElementById("caja").innerHTML =
+                        "Id: " + solicitud.result.id + " - Nombre: "
+                        + solicitud.result.nombre + " - Edad: " + solicitud.result.edad
+                        + " - Puesto: " + solicitud.result.puesto;
+                }
+                else {
+                    document.getElementById("caja").innerHTML =
+                        "El Id 351 no aparece en la base de datos";
+                }
+            };
+        }
+        function listar() {
+            // transaction nos permite indicar que ObjectStore queremos 
+            // utilizar y el nivel de acceso. 
+            var transaccion = baseDatos.transaction("empleados", "readonly");
+            // Seleccionamos el ObjectStore empleados 
+            // que equivalldría a la tabla. 
+            var tabla = transaccion.objectStore("empleados");
+            // Vaciamos el div de resultados 
+            document.getElementById("caja").innerHTML = "";
+            // Se recuperan los datos en un Cursor y mientras haya datos 
+            // se ejecuta el evento onsuccess 
+            tabla.openCursor().onsuccess = function (evento) {
+                // Obtiene el siguiente registro de datos 
+                var cursor = evento.target.result;
+                // Si tiene datos los muestra y con continue salta al  
+                // siguiente registro. En caso contrario muestra el mensaje 
+                // no hay más registros. 
+                if (cursor) {
+                    document.getElementById("caja").innerHTML += "Id: " + cursor.value.id
+                        + " - Nombre: " + cursor.value.nombre + " -  Edad: "
+                        + cursor.value.edad + " - Puesto: " + cursor.value.puesto + "<br>";
+                    // Desplaza puntero de lectura al registro siguiente 
+                    cursor.continue();
+                }
+                else {
+                    document.getElementById("caja").innerHTML += "No hay mas Registros.";
+                }
+            };
+        }
+        function anadir() {
+            // transaction nos permite indicar que ObjectStore queremos 
+            // utilizar y el nivel de acceso. 
+            var transaccion = baseDatos.transaction(["empleados"], "readwrite");
+            // Seleccionamos el ObjectStore empleados 
+            // que equivalldría a la tabla.    
+            var tabla = transaccion.objectStore("empleados");
+            // Insertamos con add el registro con Id 351 con los datos  
+            // correspondientes 
+            var solicitud = tabla.add({
+                id: 351, nombre: "Marta Romero", edad: 19,
+                puesto: "Administración"
+            });
+            // Si se ha añadido el resgistro muestra el mensaje correspondiente 
+            solicitud.onsuccess = function (evento) {
+                document.getElementById("caja").innerHTML =
+                    "Marta se ha añadido a la base de datos";
+            };
+            // Si ha habido algún problema ala añadir el resgistro, muestra el  
+            // mensaje correspondiente 
+            solicitud.onerror = function (evento) {
+                document.getElementById("caja").innerHTML =
+                    "Marta NO se ha podido añadir  a la base de datos";
+            }
+        }
+        function eliminar() {
+            // transaction nos permite indicar que ObjectStore queremos 
+            // utilizar y el nivel de acceso. 
+            var transaccion = baseDatos.transaction(["empleados"], "readwrite");
+            // Seleccionamos el ObjectStore empleados 
+            // que equivalldría a la tabla.    
+            var tabla = transaccion.objectStore("empleados");
+            // Mediante delete() eliminamos el registro con Id 351 del ObjectStore  
+            var solicitud = tabla.delete(351);
+            // Si todo ha ido correctamente muestra el mensaje indicando 
+            // que el borrado se ha realizado. 
+            solicitud.onsuccess = function (evento) {
+                document.getElementById("caja").innerHTML =
+                    "Marta ha sido eliminada de la base de datos";
+            };
+        }
+        function modificar() {
+            // transaction nos permite indicar que ObjectStore queremos 
+            // utilizar y el nivel de acceso. 
+            var transaccion = baseDatos.transaction(["empleados"], "readwrite");
+            // Seleccionamos el ObjectStore empleados 
+            // que equivalldría a la tabla.    
+            var tabla = transaccion.objectStore("empleados");
+            // Insertamos con put los nuevos valores del  registro con Id 351  
+            // y con los datos correspondientes 
+            var solicitud = tabla.put({
+                id: 351, nombre: "Marta Romero", edad: 33,
+                puesto: "Atención al Cliente"
+            });
+            // Si todo ha ido correctamente muestra el mensaje indicando 
+            // que la modificación se ha realizado. 
+            solicitud.onsuccess = function (evento) {
+                document.getElementById("caja").innerHTML =
+                    "Marta se ha modificado/insertado en la base de datos";
+            };
+            // Si no se ha podido realizar la modificación de datos 
+            // mostramos el mensaje indicando que la modificación  
+            // no se ha realizado. 
+            solicitud.onerror = function (evento) {
+                document.getElementById("caja").innerHTML =
+                    "Marta NO ha podido ser modificado de la base de datos";
+            };
+        } 
+    </script>
+</head>
+<body>
+    <button onclick="leer()">Leer Registro</button>
+    <button onclick="listar()">Listar Registros</button>
+    <button onclick="anadir()">Añadir Registro</button>
+    <button onclick="eliminar()">Eliminar Registro</button>
+    <button onclick="modificar()">Modificar Registro</button>
+    <hr>
+    <div id="caja"></div>
+</body>
+
+</html>

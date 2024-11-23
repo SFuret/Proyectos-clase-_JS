@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+    <script type="text/javascript">
+        // Creamos el objeto XMLHttpRequest que permite la 
+        // comunicación asíncrona con el servidor 
+        var peticion = new XMLHttpRequest();
+        function obtenerDatosServidor() {
+            // Cada vez que cambia el estado del objeto XMLHttpRequest  
+            // se ejecuta la funcion de callback 
+            peticion.onreadystatechange = function () {
+                // Si 4 Comunicación completada y 200 comunicación OK  
+                // devuelve el caja el contenido del fichero que se  
+                // almacena en la propiedad responseText del objeto 
+                if (peticion.readyState == 4 && peticion.status == 200) {
+                    document.getElementById("caja").innerHTML =
+                        peticion.responseText;
+                }
+            };
+            // Configura conexión asincrona con una URL  
+            peticion.open("GET", "datos.txt", true);
+            // Realiza la conexión con la URL 
+            peticion.send();
+        } 
+    </script>
+</head>
+
+<body>
+    <form>
+        <input type="button" value="Obtener Datos" onclick="obtenerDatosServidor()">
+    </form>
+    <div id="caja">La información será reemplazada</div>
+</body>
+
+</html>
