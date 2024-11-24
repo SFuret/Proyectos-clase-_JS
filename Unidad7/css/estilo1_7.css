@@ -44,9 +44,7 @@ body{
 }
 
 
-#listar{
 
-}
 #insertar{
    margin-left: 50%;
    display: none; /*No quiero que se muestre al principio*/
@@ -87,4 +85,16 @@ margin-left: 30%;
 
 #edad{    
    margin-right: 54%;
+}
+
+/**AGREGAR EMPLEADO*/
+
+#agregarForm{
+    margin-top: 10vh;
+    width: 40%;
+    height: 40vh;
+}
+
+#agrupaElementos input{
+    margin: 0 auto;
 }
