@@ -59,5 +59,8 @@ fetch(url, {
 
 });
 
-
+document.getElementById('CancelarModificar').addEventListener('click',function(event){
+event.preventDefault();
+window.location.href = `ejercicio1_7.html`;
+})
 });
