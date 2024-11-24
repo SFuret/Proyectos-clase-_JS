@@ -79,6 +79,11 @@ document.addEventListener('DOMContentLoaded', function () {  //pongo esta funciÃ
 document.getElementById('listar').addEventListener('click', function(){
 listarEmpleados();
 });
+
+//agregado nuevo
+document.getElementById('insertar').addEventListener('click', function(){
+    document.location.href=`agregarEmpleado.html`;
+})
 });
 
 /**********************FIN CONEXIÃ“N**************************** */
