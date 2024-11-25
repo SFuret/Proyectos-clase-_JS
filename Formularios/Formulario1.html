@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="./Formulario2.php" method="POST">
+   <label for="tipoInmueble">Tipo de Inmueble</label>
+   <select name="tipoInmueble" id="tipoInmueble" >
+    <option value="piso">Piso</option>
+    <option value="adosado">Adosado</option>
+    <option value="parcela">Parcela</option>
+   </select>
+
+   <br><br>
+
+   <label for="provincia">Provincia</label>
+   <input type="text" id="provincia" name="provincia" list="listadoProvincias" autocomplete="on">
+   <datalist id="listadoProvincias">
+    <option value="madrid">Madrid</option>
+    <option value="valencia">Valencia</option>
+    <option value="barcelona">Barcelona</option>
+    <option value="murcia">Murcia</option>
+   </datalist>
+      
+        
+   <br><br>
+   <label for="ubicacion">Ubicación</label>
+   <select name="ubicacion" id="ubicacion"  size="4" >
+    <option value="centro">Centro</option>
+    <option value="sur">Sur</option>
+    <option value="este">Este</option>
+    <option value="oeste">Oeste</option>
+    <option value="ronda">Ronda</option>
+   </select>
+
+<button type="submit">Redirigir</button>
+    </form>
+</body>
+</html>
