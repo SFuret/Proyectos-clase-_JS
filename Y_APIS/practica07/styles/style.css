@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+:root {
+  --primary-color: black;
+  --secondary-color: rgb(37, 37, 37);
+  --contrast-color: #71aca8;
+  --text-color: rgb(197, 197, 197);
+  --hover-color: #395553;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Lato", sans-serif;
+}
+section {
+  position: relative;
+  background: url("../img/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-family: "Lato", sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#info{
+  background-color: rgba(0, 0, 0, 0.575);
+  height: fit-content;
+  padding: 1rem ;
+  border-radius: 10px;
+}
+#bg-table{
+max-height: 400px;
+overflow-y: auto;
+
+}
+table {
+ /* background-color: rgba(0, 0, 0, 0.575);*/
+  padding: 1rem;
+}
+
+thead {
+  background-color: var(--secondary-color);
+  color: var(--contrast-color);
+}
+
+td,
+th {
+  width: 150px;
+  text-align: center;
+}
+th {
+  padding: 1.5rem 0;
+}
+td {
+  padding: 0.5rem 0;
+  color: var(--text-color);
+}
+
+#add {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  font-size: 1rem;
+}
+button {
+  background-color: var(--contrast-color);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+}
+button:hover {
+  background-color: var(--hover-color);
+  transition: all ease-in-out 100ms;
+}
+/*Estilos para cuando el button esté deshabilitado*/
+button:disabled {
+  background-color: #c0c0c0;
+  color: #808080;
+  opacity: 0.6;
+  cursor: default;
+}
+button:disabled:hover{
+  background-color: #c0c0c0;  /*Quita el hover del elemento cuando está desactivado*/
+}
+.acciones {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*formularios*/
+form {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.575);
+  flex-direction: column;
+  height: fit-content;
+  width: 30%;
+  gap: 1rem;
+  color: var(--text-color);
+  padding: 3rem;
+  border-radius: 10px;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--contrast-color);
+}
+legend {
+  color: #71aca8;
+}
+
+input {
+  padding: 1rem;
+}
+label {
+  margin-left: 1rem;
+}
+.btns-group {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+}
+
+.btns-group button {
+  padding: 1rem 2rem;
+  border-radius: 25px;
+}
+
+.ocultar {
+  display: none;
+}
+#alert-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.541);
+  /*display: none;*/
+}
+.alert {
+  width: fit-content;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 6rem;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 5px 5px 5px black;
+  border-radius: 10px;
+}
+i {
+  font-size: 100px;
+  color: var(--contrast-color);
+}
+
+#cancelarDel:hover,
+.btnBorrar:hover {
+  background-color: red;
+}
+
+/* Personalización de la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 5px; /* Ancho de la barra de desplazamiento */
+height: 80%;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--contrast-color); /* Color del pulgar (parte que se mueve) */
+  border-radius: 10px; /* Bordes redondeados del pulgar */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color cuando se pasa el ratón por encima */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Color del fondo de la barra de desplazamiento */
+  border-radius: 10px; /* Bordes redondeados del fondo */
+}

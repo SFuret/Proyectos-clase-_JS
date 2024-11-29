@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let personas= [5,10,20,30];
+
+    personas.reverse();
+    console.log(personas);
+
+    let duplicados= personas.map(function(per){
+        return per*2;
+    })
+    console.log(duplicados);
+
+    personas.sort();
+    console.log(personas);
+
+    let multiplos10=personas.filter(function(per){
+        return per%10===0;
+    })
+    console.log(multiplos10);
+
+    let longitud=personas.length;
+    console.log(longitud);
+
+    let medicos=[
+        {
+            nombre:"Juan",
+            edad:25
+        },
+        {
+            nombre:"Juana",
+            edad:55
+        },
+        {
+            nombre:"Leonel",
+            edad:35
+        }
+    ]
+
+
+    let menores50= medicos.filter(function(per){
+        return per.edad<50;
+    })
+
+    console.log(menores50);
+
+    menores50.forEach(med => {
+     console.log(med.edad);
+    });
+
+</script>

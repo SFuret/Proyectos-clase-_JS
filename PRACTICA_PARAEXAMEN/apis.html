@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+</body>
+</html>
+
+<script>
+    //listar elementos
+
+    function listarElementos()
+    {
+        let peticion=new XMLHttpRequest();
+        peticion.onreadystatechange=function(){
+            if(peticion.readyState===4 || peticion.status===200)
+        {
+            jsonDatos= peticion.JSON.parse(peticion.responseText);
+            let arrayDatos=jsonDatos; //tengo mi array
+        }
+        }
+        peticion.open("GET","la url");
+        peticion.send();
+    }
+
+    //agregar un elemento
+
+    function agregarElemento(){
+
+        let objetoNuevo={
+            nombre:"Pepe",
+            edad:15,
+        };
+
+        let pepeJson=JSON.stringify(objetoNuevo);
+
+        let peticion= new XMLHttpRequest();
+
+        peticion.onreadystatechange=function(){
+            if(peticion.readyState===4 && peticion.status===200)
+        {
+            /*creado con exito*/
+        }
+        }
+         
+        peticion.getResponseHeader("Content-type", "application/json");
+
+        peticion.open("POST" ,"la url",true);
+        peticion.send(pepeJson);
+
+    }
+
+    //function borrar datos
+
+    function borrarDatos(){
+
+        let peticion=new XMLHttpRequest();
+        peticion.onreadystatechange=function(){
+            if(peticion.readyState===4 && peticion.status===200){
+                /*todo ok*/
+            }
+        }
+        peticion.open("DELETE","laurl/${ideliminar}",true);
+        peticion.open();
+    }
+
+
+    //listar elementos
+
+    function listarElementos(){
+        let peticion=new XMLHttpRequest();
+        peticion.onreadystatechange=function(){
+            if(peticion.readyState===4 && peticion.status===201)
+        {
+            jsonInfo= JSON.parse(peticion.responseText);
+            let array=jsonInfo;
+        }
+        }
+        peticion.open("GET", "laa url");
+        peticion.send();
+    }
+
+    //crear elementos
+
+    function crearElementos(){
+        let elementoNuevo={
+            nombre: "nnn",
+            edad: 12
+        }
+
+        elementoNuevo=JSON.stringify(elementoNuevo);
+        let peticion= new XMLHttpRequest();
+        peticion.onreadystatechange=function(){
+            if(peticion.readyState===4 && peticion.status===201)
+        {
+            /*todo ok*/
+        }
+        }
+
+        peticion.getResponseHeader("Content-type", "application/json");
+        peticion.open("POST", "la url", true);
+        peticion.send(elementoNuevo);
+    }
+
+    
+
+</script>

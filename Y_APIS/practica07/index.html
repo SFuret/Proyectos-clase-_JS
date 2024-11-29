@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script src="./js/script.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/58f1944dbe.js"
+      crossorigin="anonymous"
+    ></script>
+    
+    <title>Gestión de empleados</title>
+  </head>
+  <body>
+    <section id="section1">
+      <button id="add">+</button>
+      <div id="info">
+      <div>
+        <table>
+          <thead>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Edad</th> 
+            <th>Cargo</th>
+            <th>Contratado</th>
+            <th>Acciones</th>
+           </thead>
+        </table>
+      </div>
+      <div id="bg-table">
+        <table id="list"></table>
+      </div>
+     </div>
+      <form id="formulario" class="ocultar">
+        <fieldset>
+          <legend>Inserte los datos del nuevo Empleado</legend>
+          <input type="text" placeholder="Inserte el nombre" required />
+          <input type="text" placeholder="Inserte la edad" required />
+          <input type="text" placeholder="Inserte el cargo" required />
+        </fieldset>
+        <div>
+          <input type="checkbox" name="contratado" id="contratado" /><label
+            for="contratado"
+            >Empleado contratado</label
+          >
+        </div>
+        <input
+          type="hidden"
+        /><!--input para ubicar el id del empleado a modificar-->
+        <div class="btns-group">
+          <button id="enviar">ENVIAR</button>
+          <button type="button" id="cancelar">CANCELAR</button>
+        </div>
+      </form>
+    </section>
+    <!--ALERTA DE BORRADO-->
+     <div id="alert-section" class="ocultar">
+      <div class="alert">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <h2>¿Estás seguro?</h2>
+      <p>Este empleado se eliminará de forma permanente</p>
+      <div class="btns-group">
+        <button onclick="actionDelete(this)" id="btnContinuar">CONTINUAR</button>
+      <button id="cancelarDel">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

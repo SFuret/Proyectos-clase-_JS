@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+   class Hospital{
+    constructor(cH, n, dir){
+        this.codHospital=cH;
+        this.nombre=n;
+        this.direccion=dir
+    }
+   }
+
+
+   class Medico{
+    
+    constructor(cM,nM,esp,hosp){
+
+        this.codMedico=cM,
+        this.nombre=nM,
+        this.especialidad=esp,
+        this.hospital=hosp
+    }
+
+    mostrarDatos(){
+        return `<p>${this.nombre}${this.especialidad}${this.hospital.nombre}</p>`
+    }
+   }
+
+   let hospitalRibera= new Hospital(12,"Hospital Rivera","av Reino de Valencia");
+   let medico1= new Medico(14,"Juan","traumatología",hospitalRibera);
+
+   console.log(medico1.mostrarDatos());
+
+</script>
